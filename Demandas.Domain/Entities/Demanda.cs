@@ -1,6 +1,7 @@
 ﻿using Demandas.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,24 @@ namespace Demandas.Domain.Entities
     public class Demanda
     {
 
-        public int Id { get; private set; }
-
+        private int _id;
         private string _titulo;
+        private string _descricao;
+        private DateTime _dataCriacao;
+        private DateTime? _dataFinalizacao;
+        private int _usuarioCadastranteId;
+        private Usuario _usuarioCadastrante;
+        private int? _usuarioResponsavelId;
+        private Usuario _usuarioResponsavel;
+        private int _status;
+        private int _tipoDemanda;
+        private bool? _urgente;
+        private bool? _importante;
+
+
+        public int Id { get => _id; }
+
+        
         public string Titulo { get
             {
                 return _titulo;
@@ -23,25 +39,25 @@ namespace Demandas.Domain.Entities
             }
         }
 
-        public string Descricao { get; private set; }
+        public string Descricao { get => _descricao; set { _descricao = value; } }
 
-        public DateTime DataCriacao { get; private set; }
+        public DateTime DataCriacao { get => _dataCriacao; set { _dataCriacao = value; } }
 
-        public DateTime? DataFinalizacao { get; private set; }
+        public DateTime? DataFinalizacao { get => _dataFinalizacao; private set { _dataFinalizacao = value; } }
 
-        public int UsuarioCadastranteId { get; set; }
-        public Usuario UsuarioCadastrante { get; private set; }
+        public int UsuarioCadastranteId { get => _usuarioCadastranteId; set { _usuarioCadastranteId = value; } }
+        public Usuario UsuarioCadastrante { get => _usuarioCadastrante; set { if (value == null) return; else { _usuarioCadastrante = value; } } }
 
-        public int? UsuarioResponsavelId { get; set; }
-        public Usuario? UsuarioResponsavel { get; private set; }
+        public int? UsuarioResponsavelId { get => _usuarioResponsavelId; set { _usuarioResponsavelId = value; } }
+        public Usuario? UsuarioResponsavel { get => _usuarioCadastrante; set { _usuarioResponsavel = value; } }
 
-        public EnumStatusDemanda Status { get; private set; }
+        public EnumStatusDemanda Status { get => (EnumStatusDemanda)_status; set { _status = (int)value; } }
 
-        public EnumTipoDemanda TipoDemanda { get; set; }
+        public EnumTipoDemanda TipoDemanda { get => (EnumTipoDemanda)_tipoDemanda; set { _tipoDemanda = (int)value; } }
 
-        public bool? Urgente { get; private set; }
+        public bool? Urgente { get => _urgente; set { _urgente = value; } }
 
-        public bool? Importante { get; private set; }
+        public bool? Importante { get => _importante; set { _importante = value; } }
 
 
     }
