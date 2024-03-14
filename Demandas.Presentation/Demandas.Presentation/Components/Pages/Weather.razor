@@ -24,9 +24,9 @@ else
 
 @code {
     private IQueryable<WeatherForecast>? forecasts;
-    public Demanda demanda { get; set; }
     protected override async Task OnInitializedAsync()
     {
+        
         // Simulate asynchronous loading to demonstrate streaming rendering
         await Task.Delay(500);
 

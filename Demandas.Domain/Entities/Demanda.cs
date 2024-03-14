@@ -25,7 +25,11 @@ namespace Demandas.Domain.Entities
         private bool? _urgente;
         private bool? _importante;
 
+        private int _empresaId;
+        private EmpresaCliente _empresa;
 
+        private int _clienteId;
+        private Cliente _cliente;
         public int Id { get => _id; }
 
         
@@ -59,6 +63,32 @@ namespace Demandas.Domain.Entities
 
         public bool? Importante { get => _importante; set { _importante = value; } }
 
+
+        public int EmpresaId { get => _empresaId;
+            set
+            {
+                if (value == 0) throw new ArgumentException("O ID da empresa solicitante precisa válido");
+            }    
+        }
+        public EmpresaCliente Empresa { get; set; }
+
+        public int ClienteId { 
+            get => _clienteId;
+            set 
+            {
+                if (_clienteId == 0) throw new InvalidDataException("O ID cliente precisa ser válido");
+            }
+        }
+        public Cliente Cliente { 
+            get => _cliente; 
+            set 
+            {
+                if (value == null) return;
+
+                _cliente = value;
+            } 
+        }
+        public ICollection<AnexosDemanda> Anexos { get; set; } = new List<AnexosDemanda>();
 
     }
 }
