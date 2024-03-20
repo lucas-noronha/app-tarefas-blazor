@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Interfaces
 {
-    internal interface IUsuarioRepository
+    public interface IUsuarioRepository
     {
     }
 }
