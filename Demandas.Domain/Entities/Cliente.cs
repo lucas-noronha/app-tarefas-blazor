@@ -36,6 +36,8 @@ namespace Demandas.Domain.Entities
         {
             List<DomainValidationException> errors = new List<DomainValidationException>();
 
+            if (dto == null) throw new ArgumentNullException("Os dados para validação da entidade não foram fornecidos.");
+
             if (string.IsNullOrWhiteSpace(dto.Nome)) errors.Add(new DomainValidationException("O nome do Cliente precisa ser informado."));
             if (dto.Nome.Length < 5) errors.Add(new DomainValidationException("O nome do Cliente informado é muito curto."));
             if (dto.EmpresaId <= 0) errors.Add(new DomainValidationException("A empresa do Cliente precisa ser informada."));

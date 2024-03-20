@@ -1,4 +1,5 @@
-﻿using Demandas.Domain.Exceptions;
+﻿using Demandas.Domain.DTOs;
+using Demandas.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace Demandas.Domain.Entities
         {
             List<DomainValidationException> erros = new List<DomainValidationException>();
 
-            if (dataUltimaEdicao.Date < DateTime.Now.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
+            if (dataUltimaEdicao.Date < DateTime.UtcNow.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
             if (usuarioUltimaEdicaoId <= 0) erros.Add(new DomainValidationException("O ID do usuário da ultima edição é inválido."));
             if (EmpresaId <= 0) erros.Add(new DomainValidationException("A empresa da entidade precisa ser informada"));
 

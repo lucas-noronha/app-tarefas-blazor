@@ -45,7 +45,7 @@ namespace Demandas.Domain.Entities
 
         public void AtualizarEntidade(DemandaDto dto)
         {
-            var dataUltimaEdicao = DateTime.Now;
+            var dataUltimaEdicao = DateTime.UtcNow;
             dto.DataUltimaEdicao = dataUltimaEdicao;
 
             ValidarEntidade(dto);
@@ -65,18 +65,18 @@ namespace Demandas.Domain.Entities
         }
 
 
-        private void ValidarEntidade(DemandaDto dto)
+        void ValidarEntidade(DemandaDto dto)
         {
             List<DomainValidationException> erros = new List<DomainValidationException>();
 
-            DomainValidationException.ThrowWhen(dto is null, "As informações não foram enviadas para validação!");
+            if (dto == null) throw new ArgumentNullException("Os dados para validação da entidade não foram fornecidos.");
 
 
             if (string.IsNullOrWhiteSpace(dto.Titulo)) erros.Add(new DomainValidationException("O título da demanda é obrigatório."));
             else if (dto.Titulo.Length < 10) erros.Add(new DomainValidationException("O título precisa ter pelo menos 10 caracteres."));
             if (string.IsNullOrWhiteSpace(dto.Descricao)) erros.Add(new DomainValidationException("A descrição precisa ser informada."));
             else if (dto.Descricao.Length < 5) erros.Add(new DomainValidationException("A descrição precisa ter pelo menos 10 caracteres."));
-            if (dto.DataFinalizacao != null && dto.DataFinalizacao > DateTime.Now) erros.Add(new DomainValidationException("A data de finalização não pode ser maior que a data atual."));
+            if (dto.DataFinalizacao != null && dto.DataFinalizacao > DateTime.UtcNow) erros.Add(new DomainValidationException("A data de finalização não pode ser maior que a data atual."));
             if (dto.UsuarioResponsavelId <= 0) erros.Add(new DomainValidationException("O ID do usuário responsável precisa ser válido."));
             if (dto.EmpresaId <= 0) erros.Add(new DomainValidationException("A empresa do solicitante da demanda não é válida."));
             if (dto.ClienteId <= 0) erros.Add(new DomainValidationException("O ID do Cliente informado é inválido."));
