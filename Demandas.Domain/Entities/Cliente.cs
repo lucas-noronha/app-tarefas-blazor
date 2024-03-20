@@ -1,4 +1,5 @@
-﻿using Demandas.Domain.Exceptions;
+﻿using Demandas.Domain.DTOs;
+using Demandas.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,71 +9,38 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Demandas.Domain.Entities
 {
-    sealed class Cliente
+    sealed class Cliente : EntityBase
     {
 
-        public Cliente(string nome, string contato, int empresaId, EmpresaCliente empresa)
+        public Cliente(ClienteDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
         {
-            Nome = nome;
-            Contato = contato;
-            Empresa = empresa;
-            if (empresa != null) DomainValidationException.ThrowWhen(empresaId != empresa.Id, "O ID da empresa é inconsistente.");
-            ValidarEntidade(Nome, EmpresaId);
+            AtualizarEntidade(dto);
         }
-        public int Id { get; }
 
         public string Nome { get; private set; }
 
         public string? Contato { get; private set; }
 
-        public int EmpresaId { get; private set; }
-        public EmpresaCliente? Empresa { get; private set; }
-
-        public void SetNome(string nome)
+        public void AtualizarEntidade(ClienteDto dto)
         {
-            ValidarNome(nome);
-            Nome = nome;
-        }
+            dto.DataUltimaEdicao = DateTime.Now;
+            ValidarEntidade(dto);
 
-        public void SetEmpresaId(int empresaId)
-        {
-            ValidarEmpresa(empresaId);
-            EmpresaId = empresaId;
-        }
-
-        private void ValidarEntidade(string nome, int empresaId)
-        {
-            List<DomainValidationException> erros = new List<DomainValidationException>();
-
-            ValidarNome(nome, erros);
-            ValidarEmpresa(empresaId, erros);
-            
-
-            if (erros.Any())
-            {
-                throw new AggregateException("Ocorreram erros na validação do Cliene, por favor, corrija e tente novamente", erros);
-            }
-        }
-
-        private void ValidarNome(string nome, List<DomainValidationException> listaErros = null)
-        {
-            List<DomainValidationException> erros = listaErros ?? new List<DomainValidationException>();
-            
-            if (nome.Length < 3) erros.Add(new DomainValidationException("O Nome do Cliente é muito curto."));
-            else if (string.IsNullOrWhiteSpace(nome)) erros.Add(new DomainValidationException("O Nome do Cliente precisa ser informado"));
-
-            if (listaErros == null && erros.Any()) throw new AggregateException("Erros ao validar nome.", erros);
-        }
-
-        private void ValidarEmpresa(int empresaId, List<DomainValidationException> listaErros = null)
-        {
-            List<DomainValidationException> erros = listaErros ?? new List<DomainValidationException>();
-
-            if (empresaId < 0) erros.Add(new DomainValidationException("O ID da empresa do Cliente deve ser válido."));
-
-            if (listaErros == null && erros.Any()) throw new AggregateException("Erros ao validar ID da empresa do Cliente.", erros);
+            Nome = dto.Nome;
+            Contato = dto.Contato;
+            base.AtualizarEntidadeBase(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
 
         }
+        
+        public void ValidarEntidade(ClienteDto dto)
+        {
+            List<DomainValidationException> errors = new List<DomainValidationException>();
 
+            if (string.IsNullOrWhiteSpace(dto.Nome)) errors.Add(new DomainValidationException("O nome do Cliente precisa ser informado."));
+            if (dto.Nome.Length < 5) errors.Add(new DomainValidationException("O nome do Cliente informado é muito curto."));
+            if (dto.EmpresaId <= 0) errors.Add(new DomainValidationException("A empresa do Cliente precisa ser informada."));
+
+            errors.AddRange(base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId));
+        }
     }
 }

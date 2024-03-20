@@ -1,7 +1,12 @@
 ﻿namespace Demandas.Domain.Entities
 {
-    public class EmpresaCliente
+    sealed class EmpresaCliente
     {
+        public EmpresaCliente(string nome)
+        {
+            Nome = nome;
+        }
+
         public int Id { get; set; }
 
         public string Nome { get; set; }
