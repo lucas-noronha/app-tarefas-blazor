@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Entities
 {
-    internal abstract class EntityBase
+    public abstract class EntityBase
     {
 
         protected EntityBase(int usuarioCriacao, int empresaId)

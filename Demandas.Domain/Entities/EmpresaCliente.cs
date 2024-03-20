@@ -3,7 +3,7 @@ using Demandas.Domain.Exceptions;
 
 namespace Demandas.Domain.Entities
 {
-    sealed class EmpresaCliente
+    public class EmpresaCliente
     {
         public EmpresaCliente(EmpresaDto dto)
         {

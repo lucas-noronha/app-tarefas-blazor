@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Entities
 {
-    internal sealed class Demanda : EntityBase
+    public class Demanda : EntityBase
     {
         public Demanda(DemandaDto dto) : base(dto.UsuarioCadastranteId, dto.EmpresaId)
         {

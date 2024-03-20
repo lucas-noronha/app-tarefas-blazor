@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Entities
 {
-    sealed class Usuario : EntityBase
+    public class Usuario : EntityBase
     {
         public Usuario(UsuarioDto dto, int empresaId) : base(dto.UsuarioUltimaEdicaoId, empresaId)
         {

@@ -9,7 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Demandas.Domain.Entities
 {
-    sealed class Cliente : EntityBase
+    public class Cliente : EntityBase
     {
 
         public Cliente(ClienteDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
