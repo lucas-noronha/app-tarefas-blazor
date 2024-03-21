@@ -9,6 +9,10 @@ namespace Demandas.Domain.DTOs
 {
     public abstract class DtoBase
     {
+        protected DtoBase(int usuarioUltimaEdicao)
+        {
+            UsuarioUltimaEdicaoId = usuarioUltimaEdicao;
+        }
         public DateTime DataUltimaEdicao { get; set; }
         public int UsuarioUltimaEdicaoId { get; set; }
 

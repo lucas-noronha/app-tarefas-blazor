@@ -16,13 +16,14 @@ namespace Demandas.Domain.DTOs
             string descricao,
             DateTime? finalizacao,
             int usuarioResponsavelId,
-            int status,
-            int tipoDemanda,
+            EnumStatusDemanda status,
+            EnumTipoDemanda tipoDemanda,
             bool urgente,
             bool importante,
             int empresaId,
-            int clienteId
-            )
+            int clienteId,
+            int usuarioUltimaEdicao
+            ) : base(usuarioUltimaEdicao)
         {
             Titulo = titulo ;
             Descricao = descricao;
@@ -43,8 +44,6 @@ namespace Demandas.Domain.DTOs
         public string Descricao { get; set; }
 
         public DateTime? DataFinalizacao { get; set; }
-
-        public int UsuarioCadastranteId { get; set; }
         public int UsuarioResponsavelId { get; set; }
 
         public EnumStatusDemanda Status { get; set; }

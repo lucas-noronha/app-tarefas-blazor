@@ -2,12 +2,11 @@
 {
     public class ClienteDto : DtoBase
     {
-        public ClienteDto(string nome, string? contato, int empresaId, int usuarioUltimaEdicaoId) 
+        public ClienteDto(string nome, string? contato, int empresaId, int usuarioUltimaEdicaoId) : base(usuarioUltimaEdicaoId)
         {
             Nome = nome;
             Contato = contato;
             EmpresaId = empresaId;
-            UsuarioUltimaEdicaoId = usuarioUltimaEdicaoId;
         }
         public string Nome { get; set; }
 

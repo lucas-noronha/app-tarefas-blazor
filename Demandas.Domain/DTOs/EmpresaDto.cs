@@ -8,11 +8,10 @@ namespace Demandas.Domain.DTOs
 {
     public class EmpresaDto : DtoBase
     {
-        public EmpresaDto(string nome, string logo, int usuarioEdicaoId) 
+        public EmpresaDto(string nome, string logo, int usuarioEdicaoId) : base(usuarioEdicaoId)
         { 
             Nome = nome;
             Logo = logo;
-            UsuarioUltimaEdicaoId = usuarioEdicaoId;
         }
 
         public string Nome { get; set; }

@@ -8,7 +8,7 @@ namespace Demandas.Domain.DTOs
 {
     public class UsuarioDto : DtoBase
     {
-        public UsuarioDto(string nome, string login, string senha, string email, bool adm, bool dev,int usuarioUltimaEdicao, int empresaId) 
+        public UsuarioDto(string nome, string login, string senha, string email, bool adm, bool dev,int usuarioUltimaEdicao, int empresaId)  : base(usuarioUltimaEdicao)
         {
             Nome = nome;
             Login = login;

@@ -50,7 +50,7 @@ namespace Demandas.Domain.Test
 
         [Trait("Cliente", "Teste de Validação da Criação E Atualização de Clientes")]
         [Fact(DisplayName = "Atualizar Cliente Com Parâmetros Validos")]
-        public void AtualizarCliente_ComDadosValidos_RetornaClienteCriado()
+        public void AtualizarCliente_ComDadosValidos_RetornaClienteAtualizado()
         {
 
             var dto = new ClienteDto("teste 1", "999999999", 1, 1);
@@ -71,7 +71,7 @@ namespace Demandas.Domain.Test
         }
         [Trait("Cliente", "Teste de Validação da Criação E Atualização de Clientes")]
         [Fact(DisplayName = "Atualizar Cliente Com Parâmetros Inválidos")]
-        public void AtualizarCliente_ComDadosInvalidos_RetornaClienteCriado()
+        public void AtualizarCliente_ComDadosInvalidos_RetornaDomainInvalidException()
         {
 
             var dto = new ClienteDto("teste 1", "999999999", 1, 1);

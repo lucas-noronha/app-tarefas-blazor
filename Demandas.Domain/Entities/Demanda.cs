@@ -13,8 +13,9 @@ namespace Demandas.Domain.Entities
 {
     public class Demanda : EntityBase
     {
-        public Demanda(DemandaDto dto) : base(dto.UsuarioCadastranteId, dto.EmpresaId)
+        public Demanda(DemandaDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
         {
+            
             AtualizarEntidade(dto);
         }
 
@@ -80,7 +81,7 @@ namespace Demandas.Domain.Entities
             if (dto.UsuarioResponsavelId <= 0) erros.Add(new DomainValidationException("O ID do usuário responsável precisa ser válido."));
             if (dto.EmpresaId <= 0) erros.Add(new DomainValidationException("A empresa do solicitante da demanda não é válida."));
             if (dto.ClienteId <= 0) erros.Add(new DomainValidationException("O ID do Cliente informado é inválido."));
-            if (dto.UsuarioCadastranteId <= 0) erros.Add(new DomainValidationException("O ID do usuário cadastrante é inválido."));
+            if (UsuarioCriacaoId <= 0) erros.Add(new DomainValidationException("O ID do usuário cadastrante é inválido."));
 
             var retornos = base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
             erros.AddRange(retornos);
