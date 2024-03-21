@@ -85,14 +85,14 @@ namespace Demandas.Domain.Test
             var dto = new UsuarioDto("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
             var empresa = new Usuario(dto);
 
-            dto.Nome = "Usuario 2";
-            dto.Login = "login2";
-            dto.Senha = "senha321";
-            dto.Email = "email1@email1";
+            dto.Nome = "";
+            dto.Login = "";
+            dto.Senha = "";
+            dto.Email = "";
             dto.Desenvolvedor = true;
             dto.Administrador = true;
-            dto.UsuarioUltimaEdicaoId = 2;
-            dto.EmpresaId = 1;
+            dto.UsuarioUltimaEdicaoId = 0;
+            dto.EmpresaId = 0;
 
             Assert.Throws<DomainValidationException>(() => empresa.AtualizarEntidade(dto));
 
