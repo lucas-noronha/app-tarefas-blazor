@@ -28,7 +28,7 @@ namespace Demandas.Domain.Entities
 
             Nome = dto.Nome;
             Contato = dto.Contato;
-            base.AtualizarEntidadeBase(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
+            base.AtualizarEntidadeBase(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId, dto.EmpresaId);
 
         }
         
@@ -43,6 +43,8 @@ namespace Demandas.Domain.Entities
             if (dto.EmpresaId <= 0) errors.Add(new DomainValidationException("A empresa do Cliente precisa ser informada."));
 
             errors.AddRange(base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId));
+
+            if (errors.Any()) throw new DomainValidationException("Houveram erros ao validar o Cliente", errors);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Interfaces
 {
-    public interface IEmpresaRepository : IRepositoryBase<EmpresaCliente>
+    public interface IEmpresaRepository : IRepositoryBase<Empresa>
     {
     }
 }

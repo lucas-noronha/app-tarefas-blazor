@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Demandas.Infrastructure.EntityConfiguration
 {
-    internal class EmpresaConfiguration : IEntityTypeConfiguration<EmpresaCliente>
+    internal class EmpresaConfiguration : IEntityTypeConfiguration<Empresa>
     {
-        public void Configure(EntityTypeBuilder<EmpresaCliente> builder)
+        public void Configure(EntityTypeBuilder<Empresa> builder)
         {
             builder
                 .ToTable("empresa_cliente");

@@ -8,7 +8,7 @@ namespace Demandas.Domain.DTOs
 {
     public class UsuarioDto : DtoBase
     {
-        public UsuarioDto(string nome, string login, string senha, string email, bool adm, bool dev,int usuarioUltimaEdicao) 
+        public UsuarioDto(string nome, string login, string senha, string email, bool adm, bool dev,int usuarioUltimaEdicao, int empresaId) 
         {
             Nome = nome;
             Login = login;
@@ -17,6 +17,7 @@ namespace Demandas.Domain.DTOs
             Administrador = adm;
             Desenvolvedor = dev;
             UsuarioUltimaEdicaoId = usuarioUltimaEdicao;
+            EmpresaId = empresaId;
         }
 
         public string Nome { get; set; }
@@ -30,5 +31,7 @@ namespace Demandas.Domain.DTOs
         public bool Administrador { get; set; }
 
         public bool Desenvolvedor { get; set; }
+
+        public int EmpresaId { get; set; }
     }
 }

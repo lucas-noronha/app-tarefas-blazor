@@ -37,7 +37,7 @@ namespace Demandas.Domain.Entities
 
 
         public int EmpresaId { get; private set; }
-        public EmpresaCliente Empresa { get; private set; }
+        public Empresa Empresa { get; private set; }
 
         public int ClienteId { get; private set; }
         public Cliente Cliente { get; private set;}
@@ -61,7 +61,7 @@ namespace Demandas.Domain.Entities
             EmpresaId = dto.EmpresaId;
             ClienteId = dto.ClienteId;
 
-            base.AtualizarEntidadeBase(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
+            base.AtualizarEntidadeBase(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId, dto.ClienteId);
         }
 
 
@@ -85,7 +85,7 @@ namespace Demandas.Domain.Entities
             var retornos = base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
             erros.AddRange(retornos);
 
-            if (erros.Any()) throw new AggregateException("Houveram erros na validação das informações.",erros);
+            if (erros.Any()) throw new DomainValidationException("Houveram erros na validação das informações.",erros);
             
         }
 

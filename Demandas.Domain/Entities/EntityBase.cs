@@ -32,13 +32,13 @@ namespace Demandas.Domain.Entities
         public Usuario UsuarioUltimaEdicao { get; protected set; }
 
         public int EmpresaId { get; private set; }
-        public EmpresaCliente? Empresa { get; private set; }
+        public Empresa? Empresa { get; private set; }
 
-        protected void AtualizarEntidadeBase(DateTime dataUltimaEdicao, int usuarioEdicaoId)
+        protected void AtualizarEntidadeBase(DateTime dataUltimaEdicao, int usuarioEdicaoId, int empresaId)
         {
             DataUltimaEdicao = dataUltimaEdicao;
             UsuarioUltimaEdicaoId = usuarioEdicaoId;
-
+            EmpresaId = empresaId;
         }
 
         protected List<DomainValidationException> ValidarEntidade(DateTime dataUltimaEdicao, int usuarioUltimaEdicaoId)

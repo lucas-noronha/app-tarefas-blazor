@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Domain", "Demandas.Domain\Demandas.Domain.csproj", "{DCD974D1-8F58-4C95-844C-A94B0C3A8C55}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demandas.Domain", "Demandas.Domain\Demandas.Domain.csproj", "{DCD974D1-8F58-4C95-844C-A94B0C3A8C55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Infrastructure", "Demandas.Infrastructure\Demandas.Infrastructure.csproj", "{E30A611D-B06A-47E5-8E83-E483D924146F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demandas.Infrastructure", "Demandas.Infrastructure\Demandas.Infrastructure.csproj", "{E30A611D-B06A-47E5-8E83-E483D924146F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Application", "Demandas.Application\Demandas.Application.csproj", "{EF04FD2C-36F2-4B64-A85A-BB2F878CEB9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demandas.Application", "Demandas.Application\Demandas.Application.csproj", "{EF04FD2C-36F2-4B64-A85A-BB2F878CEB9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.CrossCutting", "Demandas.CrossCutting\Demandas.CrossCutting.csproj", "{ED5B1E7C-C1A8-49CB-9105-2857F64A0C56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demandas.CrossCutting", "Demandas.CrossCutting\Demandas.CrossCutting.csproj", "{ED5B1E7C-C1A8-49CB-9105-2857F64A0C56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Presentation", "Demandas.Presentation\Demandas.Presentation\Demandas.Presentation.csproj", "{21CE0301-394A-4BF6-A51D-8CAAF45C245C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demandas.Presentation", "Demandas.Presentation\Demandas.Presentation\Demandas.Presentation.csproj", "{21CE0301-394A-4BF6-A51D-8CAAF45C245C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Presentation.Client", "Demandas.Presentation\Demandas.Presentation.Client\Demandas.Presentation.Client.csproj", "{0005BC3A-22F7-43A2-9F17-DB68B3104AEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demandas.Presentation.Client", "Demandas.Presentation\Demandas.Presentation.Client\Demandas.Presentation.Client.csproj", "{0005BC3A-22F7-43A2-9F17-DB68B3104AEE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Domain", "0 - Domain", "{5DDD1292-C578-4AFD-95BD-1AF0AF977CA5}"
 EndProject
@@ -25,9 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - CrossCutting", "3 - Cro
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Presentation", "4 - Presentation", "{578D77CD-5757-43C9-B58A-AC055441F0C8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{CC93B0C2-03FD-47F5-BF4A-C1E2C69CEB53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Tests", "Demandas.Tests\Demandas.Tests.csproj", "{BED52859-CDFB-4E61-A5D3-DAA0E2B01EE7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demandas.Domain.Test", "Demandas.Domain.Test\Demandas.Domain.Test.csproj", "{2D388F20-FF11-45CB-8356-EB17B3265CC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +57,10 @@ Global
 		{0005BC3A-22F7-43A2-9F17-DB68B3104AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0005BC3A-22F7-43A2-9F17-DB68B3104AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0005BC3A-22F7-43A2-9F17-DB68B3104AEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BED52859-CDFB-4E61-A5D3-DAA0E2B01EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BED52859-CDFB-4E61-A5D3-DAA0E2B01EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BED52859-CDFB-4E61-A5D3-DAA0E2B01EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BED52859-CDFB-4E61-A5D3-DAA0E2B01EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D388F20-FF11-45CB-8356-EB17B3265CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D388F20-FF11-45CB-8356-EB17B3265CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D388F20-FF11-45CB-8356-EB17B3265CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D388F20-FF11-45CB-8356-EB17B3265CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,7 +72,7 @@ Global
 		{ED5B1E7C-C1A8-49CB-9105-2857F64A0C56} = {F1F303BB-9F15-40A0-80C3-0C81B85A79FB}
 		{21CE0301-394A-4BF6-A51D-8CAAF45C245C} = {578D77CD-5757-43C9-B58A-AC055441F0C8}
 		{0005BC3A-22F7-43A2-9F17-DB68B3104AEE} = {578D77CD-5757-43C9-B58A-AC055441F0C8}
-		{BED52859-CDFB-4E61-A5D3-DAA0E2B01EE7} = {CC93B0C2-03FD-47F5-BF4A-C1E2C69CEB53}
+		{2D388F20-FF11-45CB-8356-EB17B3265CC7} = {5DDD1292-C578-4AFD-95BD-1AF0AF977CA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0924D1AB-2205-496C-AB7F-A80E31655DDC}

@@ -3,9 +3,9 @@ using Demandas.Domain.Exceptions;
 
 namespace Demandas.Domain.Entities
 {
-    public class EmpresaCliente
+    public class Empresa
     {
-        public EmpresaCliente(EmpresaDto dto)
+        public Empresa(EmpresaDto dto)
         {
 
             DataCriacao = DateTime.UtcNow;
@@ -54,7 +54,7 @@ namespace Demandas.Domain.Entities
             if (dto.DataUltimaEdicao.Date < DateTime.UtcNow.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
             if (dto.UsuarioUltimaEdicaoId <= 0) erros.Add(new DomainValidationException("O ID do usuário da ultima edição é inválido."));
 
-            if (erros.Any()) throw new AggregateException("Houveram erros ao validar informações da Empresa", erros);
+            if (erros.Any()) throw new DomainValidationException("Houveram erros ao validar informações da Empresa", erros);
 
         }
     }

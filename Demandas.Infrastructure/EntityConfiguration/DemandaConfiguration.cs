@@ -49,7 +49,7 @@ namespace Demandas.Infrastructure.EntityConfiguration
                 .HasColumnName("dt_finalizacao");
 
             builder
-                .Property(x => x.UsuarioCadastranteId)
+                .Property(x => x.UsuarioCriacaoId)
                 .HasColumnName("cd_usuario_cadastro");
 
             builder

@@ -10,7 +10,7 @@ namespace Demandas.Domain.Entities
 {
     public class Usuario : EntityBase
     {
-        public Usuario(UsuarioDto dto, int empresaId) : base(dto.UsuarioUltimaEdicaoId, empresaId)
+        public Usuario(UsuarioDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
         {
             AtualizarEntidade(dto);
         }
@@ -56,7 +56,7 @@ namespace Demandas.Domain.Entities
             var errosBase = base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
             if (errosBase != null) erros.AddRange(errosBase);
 
-            if (erros.Any()) throw new AggregateException("Houveram erros na validação do Usuário", erros);
+            if (erros.Any()) throw new DomainValidationException("Houveram erros na validação do Usuário", erros);
         }
     }
 }
