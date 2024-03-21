@@ -53,29 +53,48 @@ namespace Demandas.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("cd_codigo");
+                        .HasColumnName("cd_codigo")
+                        .HasColumnOrder(1);
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Contato")
-                        .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("ds_contato");
+                        .HasColumnName("ds_contato")
+                        .HasColumnOrder(3);
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_criacao");
+
+                    b.Property<DateTime>("DataUltimaEdicao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_ultima_edicao");
 
                     b.Property<int>("EmpresaId")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_empresa");
+                        .HasColumnName("cd_empresa")
+                        .HasColumnOrder(2);
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("ds_nome");
+                        .HasColumnName("ds_nome")
+                        .HasColumnOrder(3);
+
+                    b.Property<int>("UsuarioCriacaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_criacao");
+
+                    b.Property<int>("UsuarioUltimaEdicaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_edicao");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmpresaId");
 
-                    b.ToTable("clientes", (string)null);
+                    b.ToTable("clientes", "public");
                 });
 
             modelBuilder.Entity("Demandas.Domain.Entities.Demanda", b =>
@@ -83,13 +102,15 @@ namespace Demandas.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("cd_codigo");
+                        .HasColumnName("cd_codigo")
+                        .HasColumnOrder(1);
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ClienteId")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_cliene");
+                        .HasColumnName("cd_cliene")
+                        .HasColumnOrder(3);
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnType("timestamp with time zone")
@@ -97,45 +118,64 @@ namespace Demandas.Infrastructure.Migrations
 
                     b.Property<DateTime?>("DataFinalizacao")
                         .HasColumnType("timestamp with time zone")
-                        .HasColumnName("dt_finalizacao");
+                        .HasColumnName("dt_finalizacao")
+                        .HasColumnOrder(3);
+
+                    b.Property<DateTime>("DataUltimaEdicao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_ultima_edicao");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("ds_descricao");
+                        .HasMaxLength(2500)
+                        .HasColumnType("character varying(2500)")
+                        .HasColumnName("ds_descricao")
+                        .HasColumnOrder(3);
 
                     b.Property<int>("EmpresaId")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_empresa");
+                        .HasColumnName("cd_empresa")
+                        .HasColumnOrder(2);
 
                     b.Property<bool?>("Importante")
                         .HasColumnType("boolean")
-                        .HasColumnName("st_importante");
+                        .HasColumnName("st_importante")
+                        .HasColumnOrder(3);
 
                     b.Property<int>("Status")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_status");
+                        .HasColumnName("cd_status")
+                        .HasColumnOrder(3);
 
                     b.Property<int>("TipoDemanda")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_tipo");
+                        .HasColumnName("cd_tipo")
+                        .HasColumnOrder(3);
 
                     b.Property<string>("Titulo")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("ds_titulo");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("ds_titulo")
+                        .HasColumnOrder(3);
 
                     b.Property<bool?>("Urgente")
                         .HasColumnType("boolean")
-                        .HasColumnName("st_urgente");
+                        .HasColumnName("st_urgente")
+                        .HasColumnOrder(3);
 
-                    b.Property<int>("UsuarioCadastranteId")
+                    b.Property<int>("UsuarioCriacaoId")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_usuario_cadastro");
+                        .HasColumnName("cd_usuario_criacao");
 
-                    b.Property<int?>("UsuarioResponsavelId")
+                    b.Property<int>("UsuarioResponsavelId")
                         .HasColumnType("integer")
-                        .HasColumnName("cd_responsavel");
+                        .HasColumnName("cd_responsavel")
+                        .HasColumnOrder(3);
+
+                    b.Property<int>("UsuarioUltimaEdicaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_edicao");
 
                     b.HasKey("Id");
 
@@ -143,21 +183,27 @@ namespace Demandas.Infrastructure.Migrations
 
                     b.HasIndex("EmpresaId");
 
-                    b.HasIndex("UsuarioCadastranteId");
-
                     b.HasIndex("UsuarioResponsavelId");
 
-                    b.ToTable("demanda", (string)null);
+                    b.ToTable("demandas", "public");
                 });
 
-            modelBuilder.Entity("Demandas.Domain.Entities.EmpresaCliente", b =>
+            modelBuilder.Entity("Demandas.Domain.Entities.Empresa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("ds_codigo");
+                        .HasColumnName("cd_codigo");
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_criacao");
+
+                    b.Property<DateTime>("DataUltimaEdicao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_ultima_edicao");
 
                     b.Property<string>("Logo")
                         .IsRequired()
@@ -169,9 +215,17 @@ namespace Demandas.Infrastructure.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ds_nome");
 
+                    b.Property<int>("UsuarioCriacaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_criacao");
+
+                    b.Property<int>("UsuarioUltimaEdicaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_edicao");
+
                     b.HasKey("Id");
 
-                    b.ToTable("empresa_cliente", (string)null);
+                    b.ToTable("empresas", (string)null);
                 });
 
             modelBuilder.Entity("Demandas.Domain.Entities.Usuario", b =>
@@ -179,40 +233,73 @@ namespace Demandas.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("cd_codigo");
+                        .HasColumnName("cd_codigo")
+                        .HasColumnOrder(1);
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
                     b.Property<bool>("Administrador")
                         .HasColumnType("boolean")
-                        .HasColumnName("st_adm");
+                        .HasColumnName("st_adm")
+                        .HasColumnOrder(3);
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_criacao");
+
+                    b.Property<DateTime>("DataUltimaEdicao")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("dt_ultima_edicao");
 
                     b.Property<bool>("Desenvolvedor")
                         .HasColumnType("boolean")
-                        .HasColumnName("st_dev");
+                        .HasColumnName("st_dev")
+                        .HasColumnOrder(3);
 
                     b.Property<string>("Email")
-                        .HasColumnType("text")
-                        .HasColumnName("ds_email");
+                        .HasMaxLength(150)
+                        .HasColumnType("character varying(150)")
+                        .HasColumnName("ds_email")
+                        .HasColumnOrder(3);
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_empresa")
+                        .HasColumnOrder(2);
 
                     b.Property<string>("Login")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("ds_login");
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)")
+                        .HasColumnName("ds_login")
+                        .HasColumnOrder(3);
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text")
-                        .HasColumnName("ds_nome");
+                        .HasColumnName("ds_nome")
+                        .HasColumnOrder(3);
 
                     b.Property<string>("Senha")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("ds_senha");
+                        .HasMaxLength(18)
+                        .HasColumnType("character varying(18)")
+                        .HasColumnName("ds_senha")
+                        .HasColumnOrder(3);
+
+                    b.Property<int>("UsuarioCriacaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_criacao");
+
+                    b.Property<int>("UsuarioUltimaEdicaoId")
+                        .HasColumnType("integer")
+                        .HasColumnName("cd_usuario_edicao");
 
                     b.HasKey("Id");
 
-                    b.ToTable("usuario", (string)null);
+                    b.HasIndex("EmpresaId");
+
+                    b.ToTable("usuarios", "public");
                 });
 
             modelBuilder.Entity("Demandas.Domain.Entities.AnexosDemanda", b =>
@@ -228,7 +315,7 @@ namespace Demandas.Infrastructure.Migrations
 
             modelBuilder.Entity("Demandas.Domain.Entities.Cliente", b =>
                 {
-                    b.HasOne("Demandas.Domain.Entities.EmpresaCliente", "Empresa")
+                    b.HasOne("Demandas.Domain.Entities.Empresa", "Empresa")
                         .WithMany("Clientes")
                         .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -245,29 +332,34 @@ namespace Demandas.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Demandas.Domain.Entities.EmpresaCliente", "Empresa")
+                    b.HasOne("Demandas.Domain.Entities.Empresa", "Empresa")
                         .WithMany()
                         .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Demandas.Domain.Entities.Usuario", "UsuarioCadastrante")
-                        .WithMany()
-                        .HasForeignKey("UsuarioCadastranteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Demandas.Domain.Entities.Usuario", "UsuarioResponsavel")
                         .WithMany()
-                        .HasForeignKey("UsuarioResponsavelId");
+                        .HasForeignKey("UsuarioResponsavelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cliente");
 
                     b.Navigation("Empresa");
 
-                    b.Navigation("UsuarioCadastrante");
-
                     b.Navigation("UsuarioResponsavel");
+                });
+
+            modelBuilder.Entity("Demandas.Domain.Entities.Usuario", b =>
+                {
+                    b.HasOne("Demandas.Domain.Entities.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
                 });
 
             modelBuilder.Entity("Demandas.Domain.Entities.Demanda", b =>
@@ -275,7 +367,7 @@ namespace Demandas.Infrastructure.Migrations
                     b.Navigation("Anexos");
                 });
 
-            modelBuilder.Entity("Demandas.Domain.Entities.EmpresaCliente", b =>
+            modelBuilder.Entity("Demandas.Domain.Entities.Empresa", b =>
                 {
                     b.Navigation("Clientes");
                 });

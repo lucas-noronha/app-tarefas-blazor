@@ -13,63 +13,59 @@ namespace Demandas.Infrastructure.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Demanda> builder)
         {
-            builder
-                .ToTable("demanda");
 
-            builder
-                .HasKey(x => x.Id);
-
-            builder
-                .Property(x => x.Id)
-                .HasColumnName("cd_codigo")
-                .UseSerialColumn();
-
-            builder
-                .Property(x => x.EmpresaId)
-                .HasColumnName("cd_empresa");
-
+            EntityBaseConfiguration.Configure(builder, "demandas", "public");
+            
             builder
                 .Property(x => x.ClienteId)
+                .HasColumnOrder(3)
                 .HasColumnName("cd_cliene");
 
             builder
                 .Property(x => x.Titulo)
-                .HasColumnName("ds_titulo");
+                .HasColumnOrder(3)
+                .HasColumnName("ds_titulo")
+                .HasMaxLength(150)
+                .IsRequired();
 
             builder
                 .Property(x => x.Descricao)
-                .HasColumnName("ds_descricao");
-
-            builder
-                .Property(x => x.DataCriacao)
-                .HasColumnName("dt_criacao");
+                .HasColumnOrder(3)
+                .HasColumnName("ds_descricao")
+                .HasMaxLength(2500)
+                .IsRequired();
 
             builder
                 .Property(x => x.DataFinalizacao)
+                .HasColumnOrder(3)
                 .HasColumnName("dt_finalizacao");
 
             builder
-                .Property(x => x.UsuarioCriacaoId)
-                .HasColumnName("cd_usuario_cadastro");
-
-            builder
                 .Property(x => x.UsuarioResponsavelId)
-                .HasColumnName("cd_responsavel");
+                .HasColumnOrder(3)
+                .HasColumnName("cd_responsavel")
+                .IsRequired();
 
             builder
                 .Property(x => x.Status)
-                .HasColumnName("cd_status");
+                .HasColumnOrder(3)
+                .HasColumnName("cd_status")
+                .IsRequired();
 
             builder
                 .Property(x => x.TipoDemanda)
-                .HasColumnName("cd_tipo");
+                .HasColumnOrder(3)
+                .HasColumnName("cd_tipo")
+                .IsRequired();
 
             builder
                 .Property(x => x.Urgente)
+                .HasColumnOrder(3)
                 .HasColumnName("st_urgente");
 
             builder
                 .Property(x => x.Importante)
+                .HasColumnOrder(3)
                 .HasColumnName("st_importante");
         }
     }

@@ -10,7 +10,8 @@ namespace Demandas.Domain.Entities
 {
     public abstract class EntityBase
     {
-
+        protected EntityBase()
+        {}
         protected EntityBase(int usuarioCriacao, int empresaId)
         {
             DataCriacao = DateTime.Now;
@@ -25,14 +26,7 @@ namespace Demandas.Domain.Entities
 
         public DateTime DataUltimaEdicao { get; protected set; }
 
-        public int UsuarioCriacaoId { get; protected set; }
-        public Usuario UsuarioCriacao { get; protected set; }
-
-        public int UsuarioUltimaEdicaoId { get; protected set; }
-        public Usuario UsuarioUltimaEdicao { get; protected set; }
-
-        public int EmpresaId { get; private set; }
-        public Empresa? Empresa { get; private set; }
+       
 
         protected void AtualizarEntidadeBase(DateTime dataUltimaEdicao, int usuarioEdicaoId, int empresaId)
         {
@@ -51,5 +45,13 @@ namespace Demandas.Domain.Entities
 
             return erros;
         }
+        public int UsuarioCriacaoId { get; set; }
+        public Usuario UsuarioCriacao { get; set; }
+
+        public int UsuarioUltimaEdicaoId { get; set; }
+        public Usuario UsuarioUltimaEdicao { get; set; }
+
+        public int EmpresaId { get; set; }
+        public Empresa? Empresa { get; set; }
     }
 }

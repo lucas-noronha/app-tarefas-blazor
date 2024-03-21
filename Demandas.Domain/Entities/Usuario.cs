@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Entities
 {
-    public class Usuario : EntityBase
+    public sealed class Usuario : EntityBase
     {
+        public Usuario()
+        {}
         public Usuario(UsuarioDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
         {
             AtualizarEntidade(dto);

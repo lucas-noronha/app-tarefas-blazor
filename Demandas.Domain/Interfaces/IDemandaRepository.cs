@@ -8,8 +8,5 @@ using System.Threading.Tasks;
 namespace Demandas.Domain.Interfaces
 {
     public interface IDemandaRepository : IRepositoryBase<Demanda>
-    {
-        void FinalizarDemanda(Demanda demanda);
-
-    }
+    {}
 }

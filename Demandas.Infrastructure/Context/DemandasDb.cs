@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Demandas.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,17 @@ namespace Demandas.Infrastructure.Context
         public DemandasDb(DbContextOptions options) : base(options)
         {}
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder model)
         {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DemandasDb).Assembly);
+            base.OnModelCreating(model);
+            model.ApplyConfigurationsFromAssembly(typeof(DemandasDb).Assembly);
         }
+        public DbSet<Demanda> Demandas { get; set; }
+
+        public DbSet<Cliente> Clientes { get; set; }
+
+        public DbSet<Empresa> Empresas { get; set; }
+
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.Entities
 {
-    public class Demanda : EntityBase
+    public sealed class Demanda : EntityBase
     {
+        public Demanda()
+        {}
         public Demanda(DemandaDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
         {
             
@@ -25,9 +27,6 @@ namespace Demandas.Domain.Entities
 
         public DateTime? DataFinalizacao { get; private set; }
         
-        public int UsuarioResponsavelId { get; private set; }
-        public Usuario UsuarioResponsavel { get; private set; }
-
         public EnumStatusDemanda Status { get; private set; }
 
         public EnumTipoDemanda TipoDemanda { get; private set;}
@@ -35,14 +34,6 @@ namespace Demandas.Domain.Entities
         public bool? Urgente { get; private set; }
 
         public bool? Importante { get; private set; }
-
-
-        public int EmpresaId { get; private set; }
-        public Empresa Empresa { get; private set; }
-
-        public int ClienteId { get; private set; }
-        public Cliente Cliente { get; private set;}
-        public ICollection<AnexosDemanda> Anexos { get; set; } = new List<AnexosDemanda>();
 
         public void AtualizarEntidade(DemandaDto dto)
         {
@@ -89,6 +80,12 @@ namespace Demandas.Domain.Entities
             if (erros.Any()) throw new DomainValidationException("Houveram erros na validação das informações.",erros);
             
         }
+        public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
+        public ICollection<AnexosDemanda> Anexos { get; set; } = new List<AnexosDemanda>();
+        public int UsuarioResponsavelId { get; set; }
+        public Usuario UsuarioResponsavel { get; set; }
+
 
     }
 }

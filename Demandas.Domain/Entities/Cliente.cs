@@ -9,9 +9,10 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Demandas.Domain.Entities
 {
-    public class Cliente : EntityBase
+    public sealed class Cliente : EntityBase
     {
-
+        public Cliente()
+        {}
         public Cliente(ClienteDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
         {
             AtualizarEntidade(dto);

@@ -9,26 +9,30 @@ using System.Threading.Tasks;
 
 namespace Demandas.Infrastructure.EntityConfiguration
 {
-    internal class EmpresaConfiguration : IEntityTypeConfiguration<Empresa>
+    internal class EntityBaseConfiguration
     {
-        public void Configure(EntityTypeBuilder<Empresa> builder)
+        public static void Configure<T>(EntityTypeBuilder<T> builder, string tabela, string schema)
+            where T : EntityBase
         {
             builder
-                .ToTable("empresas");
+                .ToTable(tabela, schema);
 
-            builder.HasKey(e => e.Id);
+            builder
+                .HasKey(x => x.Id);
+
+
             builder
                 .Property(x => x.Id)
+                .HasColumnOrder(1)
                 .HasColumnName("cd_codigo")
                 .UseSerialColumn();
 
             builder
-                .Property(x => x.Nome)
-                .HasColumnName("ds_nome");
+                .Property(x => x.EmpresaId)
+                .HasColumnName("cd_empresa")
+                .HasColumnOrder(2)
+                .IsRequired();
 
-            builder
-                .Property(x => x.Logo)
-                .HasColumnName("ds_logo");
 
             builder
                 .Property(x => x.DataCriacao)
@@ -50,16 +54,13 @@ namespace Demandas.Infrastructure.EntityConfiguration
                 .HasColumnName("cd_usuario_edicao")
                 .IsRequired();
 
-
-            builder
-                .HasMany(x => x.Clientes)
-                .WithOne(x => x.Empresa);
-
             builder
                 .Ignore(x => x.UsuarioCriacao);
 
             builder
                 .Ignore(x => x.UsuarioUltimaEdicao);
+
+
         }
     }
 }

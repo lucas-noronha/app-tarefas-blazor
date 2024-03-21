@@ -13,29 +13,17 @@ namespace Demandas.Infrastructure.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
-            builder
-                .ToTable("clientes");
-
-            builder
-                .HasKey(x => x.Id);
-
-            builder
-                .Property(x => x.Id)
-                .HasColumnName("cd_codigo")
-                .UseSerialColumn();
-
+            EntityBaseConfiguration.Configure(builder, "clientes", "public");
+            
             builder
                 .Property(x => x.Nome)
+                .HasColumnOrder(3)
                 .HasColumnName("ds_nome");
 
             builder
                 .Property(x => x.Contato)
+                .HasColumnOrder(3)
                 .HasColumnName("ds_contato");
-
-            builder
-                .Property(x => x.EmpresaId)
-                .HasColumnName("cd_empresa");
-
 
         }
     }

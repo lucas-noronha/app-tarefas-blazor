@@ -13,38 +13,39 @@ namespace Demandas.Infrastructure.EntityConfiguration
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-            builder
-                .ToTable("usuario");
-
-            builder.HasKey(x => x.Id);
-
-            builder
-                .Property(x => x.Id)
-                .HasColumnName("cd_codigo")
-                .UseSerialColumn();
+            EntityBaseConfiguration.Configure(builder, "usuarios", "public");
 
             builder
                 .Property(x => x.Nome)
+                .HasColumnOrder(3)
                 .HasColumnName("ds_nome");
 
             builder
                 .Property(x => x.Login)
-                .HasColumnName("ds_login");
+                .HasColumnOrder(3)
+                .HasColumnName("ds_login")
+                .HasMaxLength(30);
 
             builder
                 .Property(x => x.Senha)
-                .HasColumnName("ds_senha");
+                .HasColumnOrder(3)
+                .HasColumnName("ds_senha")
+                .HasMaxLength(18);
 
             builder
                 .Property(x => x.Email)
-                .HasColumnName("ds_email");
+                .HasColumnOrder(3)
+                .HasColumnName("ds_email")
+                .HasMaxLength(150);
 
             builder
                 .Property(x => x.Administrador)
+                .HasColumnOrder(3)
                 .HasColumnName("st_adm");
 
             builder
                 .Property(x => x.Desenvolvedor)
+                .HasColumnOrder(3)
                 .HasColumnName("st_dev");
         }
     }
