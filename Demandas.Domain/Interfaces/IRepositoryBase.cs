@@ -10,14 +10,14 @@ namespace Demandas.Domain.Interfaces
 {
     public interface IRepositoryBase<T> where T : class 
     {
-        ICollection<T> ListarQuery(Expression<Func<T, bool>> expression);
+        Task<ICollection<T>> ListarQueryAsync(Expression<Func<T, bool>> expression);
 
-        T  BuscarPorId(int id);
+        Task<T> BuscarPorIdAsync(int id);
 
-        T Salvar(T entity);
+        Task<T> SalvarAsync(T entity);
 
-        T Atualizar(T entity);
+        Task<T> AtualizarAsync(T entity);
 
-        void Deletar(int id);
+        void DeletarAsync(int id);
     }
 }
