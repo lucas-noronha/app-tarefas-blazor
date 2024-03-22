@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Demandas.Domain.DTOs
 {
-    public class EmpresaDto : DtoBase
+    public class EmpresaDto 
     {
-        public EmpresaDto(string nome, string logo, int usuarioEdicaoId) : base(usuarioEdicaoId)
-        { 
-            Nome = nome;
-            Logo = logo;
-        }
 
+        public int Id { get; set; }
         public string Nome { get; set; }
 
         public string Logo { get; set; }
+
+        public DateTime DataUltimaEdicao { get;  set; }
+
+        public int UsuarioUltimaEdicaoId { get;  set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Demandas.Domain.DTOs;
-using Demandas.Domain.Exceptions;
+﻿using Demandas.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +9,10 @@ namespace Demandas.Domain.Entities
 {
     public sealed class Usuario : EntityBase
     {
-        public Usuario()
-        {}
-        public Usuario(UsuarioDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
+        public Usuario(string nome, string login, string senha, string email, bool dev, bool adm, int usuarioUltimaEdicaoId, int empresaId) : base(usuarioUltimaEdicaoId,empresaId)
         {
-            AtualizarEntidade(dto);
+            AtualizarEntidade(nome, login,senha,email,dev,adm,usuarioUltimaEdicaoId,empresaId);
         }
-
-        public int Id { get; private set; }
 
         public string Nome { get; private set; }
 
@@ -31,31 +26,28 @@ namespace Demandas.Domain.Entities
 
         public bool Desenvolvedor { get; private set; }
 
-        public void AtualizarEntidade(UsuarioDto dto)
+        public void AtualizarEntidade(string nome, string login,string senha, string email, bool dev, bool adm, int usuarioUltimaEdicaoId, int empresaId)
         {
             DateTime dataUltimaEdicao = DateTime.UtcNow;
-            dto.DataUltimaEdicao = dataUltimaEdicao;
-            ValidarEntidade(dto);
+            ValidarEntidade(usuarioUltimaEdicaoId);
 
-            Nome = dto.Nome;
-            Login = dto.Login;
-            Senha= dto.Senha;
-            Email= dto.Email;
-            Administrador= dto.Administrador;
-            Desenvolvedor = dto.Desenvolvedor;
+            Nome = nome;
+            Login = login;
+            Senha= senha;
+            Email= email;
+            Administrador= adm;
+            Desenvolvedor = dev;
         }
 
-        private void ValidarEntidade(UsuarioDto dto)
+        private void ValidarEntidade(string nome, string login, string senha, string email, bool dev, bool adm, int usuarioUltimaEdicaoId, int empresaId)
         {
             List<DomainValidationException> erros = new List<DomainValidationException>();
 
-            if (dto == null) throw new ArgumentNullException("Os dados para validação da entidade não foram fornecidos.");
+            if (string.IsNullOrWhiteSpace(nome)) erros.Add(new DomainValidationException("O Nome do usuário é uma informação obrigatória"));
+            if (string.IsNullOrWhiteSpace(login)) erros.Add(new DomainValidationException("O Login do usuário é uma informação obrigatória"));
+            if (string.IsNullOrWhiteSpace(senha) || senha.Length < 6) erros.Add(new DomainValidationException("A Senha do usuário precisa ter no mínimo 6 caracteres"));
 
-            if (string.IsNullOrWhiteSpace(dto.Nome)) erros.Add(new DomainValidationException("O Nome do usuário é uma informação obrigatória"));
-            if (string.IsNullOrWhiteSpace(dto.Login)) erros.Add(new DomainValidationException("O Login do usuário é uma informação obrigatória"));
-            if (string.IsNullOrWhiteSpace(dto.Senha) || dto.Senha.Length < 6) erros.Add(new DomainValidationException("A Senha do usuário precisa ter no mínimo 6 caracteres"));
-
-            var errosBase = base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId);
+            var errosBase = base.ValidarEntidade(usuarioUltimaEdicaoId);
             if (errosBase != null) erros.AddRange(errosBase);
 
             if (erros.Any()) throw new DomainValidationException("Houveram erros na validação do Usuário", erros);

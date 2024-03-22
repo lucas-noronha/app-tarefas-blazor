@@ -1,8 +1,9 @@
-﻿using Demandas.Domain.DTOs;
-using Demandas.Domain.Exceptions;
+﻿using Demandas.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -11,39 +12,36 @@ namespace Demandas.Domain.Entities
 {
     public sealed class Cliente : EntityBase
     {
-        public Cliente()
-        {}
-        public Cliente(ClienteDto dto) : base(dto.UsuarioUltimaEdicaoId, dto.EmpresaId)
+        
+        public Cliente(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId) : base(usuarioUltimaEdicaoId, empresaId)
         {
-            AtualizarEntidade(dto);
+            AtualizarEntidade(nome, contato, empresaId, usuarioUltimaEdicaoId);
         }
 
         public string Nome { get; private set; }
 
         public string? Contato { get; private set; }
 
-        public void AtualizarEntidade(ClienteDto dto)
+        public void AtualizarEntidade(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId)
         {
-            dto.DataUltimaEdicao = DateTime.Now;
-            ValidarEntidade(dto);
+            var dataUltimaEdicao = DateTime.UtcNow;
+            ValidarEntidade(nome, contato, empresaId, usuarioUltimaEdicaoId, dataUltimaEdicao);
 
-            Nome = dto.Nome;
-            Contato = dto.Contato;
-            base.AtualizarEntidadeBase(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId, dto.EmpresaId);
+            Nome = nome;
+            Contato = contato;
+            base.AtualizarEntidadeBase(dataUltimaEdicao, usuarioUltimaEdicaoId, empresaId);
 
         }
         
-        public void ValidarEntidade(ClienteDto dto)
+        public void ValidarEntidade(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId, DateTime dataUltimaEdicao)
         {
             List<DomainValidationException> errors = new List<DomainValidationException>();
 
-            if (dto == null) throw new ArgumentNullException("Os dados para validação da entidade não foram fornecidos.");
+            if (string.IsNullOrWhiteSpace(nome)) errors.Add(new DomainValidationException("O nome do Cliente precisa ser informado."));
+            else if (nome.Length < 5) errors.Add(new DomainValidationException("O nome do Cliente informado é muito curto."));
+            if (empresaId <= 0) errors.Add(new DomainValidationException("A empresa do Cliente precisa ser informada."));
 
-            if (string.IsNullOrWhiteSpace(dto.Nome)) errors.Add(new DomainValidationException("O nome do Cliente precisa ser informado."));
-            if (dto.Nome.Length < 5) errors.Add(new DomainValidationException("O nome do Cliente informado é muito curto."));
-            if (dto.EmpresaId <= 0) errors.Add(new DomainValidationException("A empresa do Cliente precisa ser informada."));
-
-            errors.AddRange(base.ValidarEntidade(dto.DataUltimaEdicao, dto.UsuarioUltimaEdicaoId));
+            errors.AddRange(base.ValidarEntidade(usuarioUltimaEdicaoId));
 
             if (errors.Any()) throw new DomainValidationException("Houveram erros ao validar o Cliente", errors);
         }

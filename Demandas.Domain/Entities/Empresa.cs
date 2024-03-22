@@ -1,19 +1,17 @@
-﻿using Demandas.Domain.DTOs;
-using Demandas.Domain.Exceptions;
+﻿using Demandas.Domain.Exceptions;
+using System.Data;
 
 namespace Demandas.Domain.Entities
 {
     public sealed class Empresa
     {
-        public Empresa()
-        {}
-        public Empresa(EmpresaDto dto)
+        public Empresa(string nome, string logo, int usuarioCriacao)
         {
 
             DataCriacao = DateTime.UtcNow;
-            UsuarioCriacaoId = dto.UsuarioUltimaEdicaoId;
+            UsuarioCriacaoId = usuarioCriacao;
 
-            AtualizarEntidade(dto);
+            AtualizarEntidade(nome, logo,usuarioCriacao);
         }
 
         public int Id { get; set; }
@@ -34,27 +32,27 @@ namespace Demandas.Domain.Entities
 
         public ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 
-        public void AtualizarEntidade(EmpresaDto dto)
+        public void AtualizarEntidade(string nome, string logo, int usuarioUltimaEdicaoId)
         {
-            dto.DataUltimaEdicao = DateTime.UtcNow;
-            ValidarEntidade(dto);
+            var dataUltimaAtualizacao = DateTime.UtcNow;
+            ValidarEntidade(nome,dataUltimaAtualizacao,usuarioUltimaEdicaoId);
 
-            Nome = dto.Nome;
-            Logo = dto.Logo;
-            DataUltimaEdicao = dto.DataUltimaEdicao;
-            UsuarioUltimaEdicaoId = dto.UsuarioUltimaEdicaoId;
+            Nome = nome;
+            Logo = logo;
+            DataUltimaEdicao = dataUltimaAtualizacao;
+            UsuarioUltimaEdicaoId = usuarioUltimaEdicaoId;
             
             
         }
 
-        private void ValidarEntidade(EmpresaDto dto)
+        private void ValidarEntidade(string nome, DateTime dataUltimaEdicao, int usuarioUltimaEdicaoId)
         {
             List<DomainValidationException> erros = new List<DomainValidationException>();
 
-            if (dto == null) throw new ArgumentNullException("Os dados para validação da entidade não foram fornecidos.");
-            if (string.IsNullOrWhiteSpace(dto.Nome) || dto.Nome.Length < 3) erros.Add(new DomainValidationException("O nome da empresa precisa ser válido."));
-            if (dto.DataUltimaEdicao.Date < DateTime.UtcNow.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
-            if (dto.UsuarioUltimaEdicaoId <= 0) erros.Add(new DomainValidationException("O ID do usuário da ultima edição é inválido."));
+            
+            if (string.IsNullOrWhiteSpace(nome) || nome.Length < 3) erros.Add(new DomainValidationException("O nome da empresa precisa ser válido."));
+            if (dataUltimaEdicao.Date < DateTime.UtcNow.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
+            if (usuarioUltimaEdicaoId <= 0) erros.Add(new DomainValidationException("O ID do usuário da ultima edição é inválido."));
 
             if (erros.Any()) throw new DomainValidationException("Houveram erros ao validar informações da Empresa", erros);
 

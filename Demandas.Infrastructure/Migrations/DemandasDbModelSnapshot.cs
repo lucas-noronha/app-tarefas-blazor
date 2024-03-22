@@ -45,7 +45,7 @@ namespace Demandas.Infrastructure.Migrations
 
                     b.HasIndex("DemandaId");
 
-                    b.ToTable("AnexosDemanda");
+                    b.ToTable("AnexosDemanda", (string)null);
                 });
 
             modelBuilder.Entity("Demandas.Domain.Entities.Cliente", b =>

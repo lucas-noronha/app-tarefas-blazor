@@ -1,4 +1,6 @@
-﻿using Demandas.Infrastructure.Context;
+﻿using Demandas.Domain.Interfaces;
+using Demandas.Infrastructure.Context;
+using Demandas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,7 +22,10 @@ namespace Demandas.CrossCutting.DependenciesApp
             services.AddDbContext<DemandasDb>(opt => opt.UseNpgsql(conStr));
 
 
-            //services.AddScoped()
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+            services.AddScoped<IDemandaRepository, DemandaRepository>();
 
             return services;
         }

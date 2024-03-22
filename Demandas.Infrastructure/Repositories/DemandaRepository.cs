@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Infrastructure.Repositories
 {
-    internal class DemandaRepository : IDemandaRepository
+    public class DemandaRepository : IDemandaRepository
     {
         private readonly DemandasDb db;
 

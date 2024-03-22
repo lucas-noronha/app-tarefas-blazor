@@ -2,16 +2,11 @@
 using Demandas.Domain.Interfaces;
 using Demandas.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Demandas.Infrastructure.Repositories
 {
-    internal class EmpresaRepository : IEmpresaRepository
+    public class EmpresaRepository : IEmpresaRepository
     {
         private readonly DemandasDb db;
 
