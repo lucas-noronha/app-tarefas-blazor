@@ -34,7 +34,7 @@ namespace Demandas.Infrastructure.Repositories
             return entity;
         }
 
-        public async void DeletarAsync(int id)
+        public async void Deletar(int id)
         {
             var usu = await db.Usuarios.SingleOrDefaultAsync(x => x.Id == id);
             if(usu != null)

@@ -32,7 +32,7 @@ namespace Demandas.Infrastructure.Repositories
             return await db.Demandas.SingleOrDefaultAsync(x => x.Id == id);
         }
 
-        public async void DeletarAsync(int id)
+        public async void Deletar(int id)
         {
             var entity = await db.Demandas.SingleOrDefaultAsync(x => x.Id == id);
             if (entity != null)

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demandas.Domain.DTOs
+namespace Demandas.Application.DTOs
 {
     public class UsuarioDto
     {

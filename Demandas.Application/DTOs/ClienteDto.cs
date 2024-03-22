@@ -1,4 +1,4 @@
-﻿namespace Demandas.Domain.DTOs
+﻿namespace Demandas.Application.DTOs
 {
     public class ClienteDto
     {

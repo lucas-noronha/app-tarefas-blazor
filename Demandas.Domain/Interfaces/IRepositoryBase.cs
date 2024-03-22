@@ -18,6 +18,6 @@ namespace Demandas.Domain.Interfaces
 
         Task<T> AtualizarAsync(T entity);
 
-        void DeletarAsync(int id);
+        void Deletar(int id);
     }
 }

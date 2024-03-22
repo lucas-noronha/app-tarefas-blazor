@@ -7,7 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demandas.Domain.DTOs
+namespace Demandas.Application.DTOs
 {
     public class DemandaDto
     {
