@@ -1,4 +1,7 @@
-﻿using Demandas.Domain.Interfaces;
+﻿using Demandas.Application.Interfaces;
+using Demandas.Application.Mappings;
+using Demandas.Application.Services;
+using Demandas.Domain.Interfaces;
 using Demandas.Infrastructure.Context;
 using Demandas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +29,13 @@ namespace Demandas.CrossCutting.DependenciesApp
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IEmpresaRepository, EmpresaRepository>();
             services.AddScoped<IDemandaRepository, DemandaRepository>();
+
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IEmpresaService, EmpresaService>();
+            services.AddScoped<IDemandaService, DemandaService>();
+
+            services.AddAutoMapper(typeof(DomainToDTOMap));
 
             return services;
         }

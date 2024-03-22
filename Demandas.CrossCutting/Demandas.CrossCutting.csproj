@@ -12,4 +12,10 @@
     <ProjectReference Include="..\Demandas.Infrastructure\Demandas.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOs\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

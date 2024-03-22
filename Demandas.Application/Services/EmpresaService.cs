@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.Services
 {
-    internal class EmpresaService : IEmpresaService
+    public class EmpresaService : IEmpresaService
     {
         private readonly IMapper _mapper;
         private readonly IEmpresaRepository _empresaRepository;
