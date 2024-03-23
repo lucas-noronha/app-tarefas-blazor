@@ -26,7 +26,7 @@ namespace Demandas.Domain.Entities
         public void AtualizarEntidade(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId)
         {
             var dataUltimaEdicao = DateTime.UtcNow;
-            ValidarEntidade(nome, contato, empresaId, usuarioUltimaEdicaoId, dataUltimaEdicao);
+            ValidarEntidade(nome, contato, empresaId, usuarioUltimaEdicaoId);
 
             Nome = nome;
             Contato = contato;
@@ -34,7 +34,7 @@ namespace Demandas.Domain.Entities
 
         }
         
-        public void ValidarEntidade(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId, DateTime dataUltimaEdicao)
+        public void ValidarEntidade(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId)
         {
             List<DomainValidationException> errors = new List<DomainValidationException>();
 

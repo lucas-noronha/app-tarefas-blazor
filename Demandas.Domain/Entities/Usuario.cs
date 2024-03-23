@@ -29,7 +29,7 @@ namespace Demandas.Domain.Entities
         public void AtualizarEntidade(string nome, string login,string senha, string email, bool dev, bool adm, int usuarioUltimaEdicaoId, int empresaId)
         {
             DateTime dataUltimaEdicao = DateTime.UtcNow;
-            ValidarEntidade(usuarioUltimaEdicaoId);
+            ValidarEntidade(nome, login,senha,email,dev,adm,usuarioUltimaEdicaoId,empresaId);
 
             Nome = nome;
             Login = login;
@@ -37,6 +37,7 @@ namespace Demandas.Domain.Entities
             Email= email;
             Administrador= adm;
             Desenvolvedor = dev;
+            AtualizarEntidadeBase(dataUltimaEdicao, usuarioUltimaEdicaoId, empresaId);
         }
 
         private void ValidarEntidade(string nome, string login, string senha, string email, bool dev, bool adm, int usuarioUltimaEdicaoId, int empresaId)
@@ -44,8 +45,12 @@ namespace Demandas.Domain.Entities
             List<DomainValidationException> erros = new List<DomainValidationException>();
 
             if (string.IsNullOrWhiteSpace(nome)) erros.Add(new DomainValidationException("O Nome do usuário é uma informação obrigatória"));
+            else if (nome.Length < 3) erros.Add(new DomainValidationException("O Nome do Usuário é muito curto"));
             if (string.IsNullOrWhiteSpace(login)) erros.Add(new DomainValidationException("O Login do usuário é uma informação obrigatória"));
+            else if (login.Length < 3) erros.Add(new DomainValidationException("O Login do usuário é muito curto"));
             if (string.IsNullOrWhiteSpace(senha) || senha.Length < 6) erros.Add(new DomainValidationException("A Senha do usuário precisa ter no mínimo 6 caracteres"));
+
+            //
 
             var errosBase = base.ValidarEntidade(usuarioUltimaEdicaoId);
             if (errosBase != null) erros.AddRange(errosBase);

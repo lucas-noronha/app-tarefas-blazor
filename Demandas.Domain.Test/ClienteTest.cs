@@ -1,5 +1,4 @@
-﻿using Demandas.Domain.DTOs;
-using Demandas.Domain.Entities;
+﻿using Demandas.Domain.Entities;
 using Demandas.Domain.Exceptions;
 using FluentAssertions;
 using System;
@@ -21,9 +20,7 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new ClienteDto("Cliente Teste", "88999247303", 1, 1);
-
-                var empresa = new Cliente(dto);
+                var cliente = new Cliente("Cliente Premium", "", 1, 1);
             };
 
             action
@@ -38,9 +35,7 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new ClienteDto("Te", "", 0, 0);
-
-                var empresa = new Cliente(dto);
+                var cliente = new Cliente("Cl", "", 0, 0);
             };
 
             action
@@ -52,21 +47,24 @@ namespace Demandas.Domain.Test
         [Fact(DisplayName = "Atualizar Cliente Com Parâmetros Validos")]
         public void AtualizarCliente_ComDadosValidos_RetornaClienteAtualizado()
         {
+            string nome = "Cliente Premium";
+            string contato = "889999999";
+            int empresa = 1;
+            int usuarioEdicaoId = 1;
 
-            var dto = new ClienteDto("teste 1", "999999999", 1, 1);
-            var empresa = new Cliente(dto);
+            var cliente = new Cliente(nome, contato, empresa, usuarioEdicaoId);
 
-            dto.Nome = "Teste 2";
-            dto.Contato = "88888888888";
-            dto.EmpresaId = 2;
-            dto.UsuarioUltimaEdicaoId = 2;
+            nome = "Cliente";
+            contato = "998888888";
+            empresa = 2;
+            usuarioEdicaoId = 2;
 
-            empresa.AtualizarEntidade(dto);
+            cliente.AtualizarEntidade(nome, contato, empresa, usuarioEdicaoId);
 
-            Assert.True(dto.Nome == empresa.Nome);
-            Assert.True(dto.Contato== empresa.Contato);
-            Assert.True(dto.EmpresaId== empresa.EmpresaId);
-            Assert.True(dto.UsuarioUltimaEdicaoId== empresa.UsuarioUltimaEdicaoId);
+            Assert.True(nome == cliente.Nome);
+            Assert.True(contato== cliente.Contato);
+            Assert.True(empresa== cliente.EmpresaId);
+            Assert.True(usuarioEdicaoId== cliente.UsuarioUltimaEdicaoId);
 
         }
         [Trait("Cliente", "Teste de Validação da Criação E Atualização de Clientes")]
@@ -74,15 +72,26 @@ namespace Demandas.Domain.Test
         public void AtualizarCliente_ComDadosInvalidos_RetornaDomainInvalidException()
         {
 
-            var dto = new ClienteDto("teste 1", "999999999", 1, 1);
-            var empresa = new Cliente(dto);
 
-            dto.Nome = "cl";
-            dto.Contato = "";
-            dto.EmpresaId = 0;
-            dto.UsuarioUltimaEdicaoId = 0;
+            string nome = "Cliente Premium";
+            string contato = "889999999";
+            int empresa = 1;
+            int usuarioEdicaoId = 1;
 
-            Assert.Throws<DomainValidationException>(() => empresa.AtualizarEntidade(dto));
+            var cliente = new Cliente(nome, contato, empresa, usuarioEdicaoId);
+
+
+            nome = "Cl";
+            contato = "";
+            empresa = 0;
+            usuarioEdicaoId = 0;
+
+            Action action = () =>
+            {
+                cliente.AtualizarEntidade(nome, contato, empresa, usuarioEdicaoId);
+            };
+
+            action.Should().Throw<DomainValidationException>();
 
         }
     }

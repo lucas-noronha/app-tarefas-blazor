@@ -1,4 +1,3 @@
-using Demandas.Domain.DTOs;
 using Demandas.Domain.Entities;
 using Demandas.Domain.Exceptions;
 using FluentAssertions;
@@ -15,9 +14,7 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new EmpresaDto("Empresa Teste", "", 1);
-
-                var empresa = new Empresa(dto);
+                var empresa = new Empresa("Empresa Teste", "", 1);
             };
 
             action
@@ -32,9 +29,9 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new EmpresaDto("Em", "", 1);
+                
 
-                var empresa = new Empresa(dto);
+                var empresa = new Empresa("Em", "", 1);
             };
 
             action
@@ -49,9 +46,7 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new EmpresaDto("Empresa Teste", "", 0);
-
-                var empresa = new Empresa(dto);
+                var empresa = new Empresa("Empresa Teste", "", 0);
             };
 
             action
@@ -63,19 +58,18 @@ namespace Demandas.Domain.Test
         [Fact(DisplayName = "Atualizando Empresa Com Dados Válidos")]
         public void AtualizarEmpresa_ComDadosValidos_RetornarEmpresaPreenchida()
         {
-            var dto = new EmpresaDto("Empresa Teste", "logopath", 1);
-            var empresa = new Empresa(dto);
+            var empresa = new Empresa("Empresa Teste", "logopath", 1);
 
             //Act
-            dto.Nome = "Empresa Teste Atualizada";
-            dto.UsuarioUltimaEdicaoId = 2;
-            empresa.AtualizarEntidade(dto);
+            string nome = "Empresa Teste Atualizada";
+            int usuarioUltimaEdicaoId = 2;
+            empresa.AtualizarEntidade(nome, "", usuarioUltimaEdicaoId);
 
             //Assert
-            Assert.True(dto.Nome == empresa.Nome);
-            Assert.True(dto.Logo == empresa.Logo);
-            Assert.True(dto.UsuarioUltimaEdicaoId == empresa.UsuarioUltimaEdicaoId);
-            Assert.True(empresa.UsuarioUltimaEdicaoId != empresa.UsuarioCriacaoId);
+            Assert.True(nome == empresa.Nome);
+            Assert.True("" == empresa.Logo);
+            Assert.True(usuarioUltimaEdicaoId == empresa.UsuarioUltimaEdicaoId);
+            Assert.True(usuarioUltimaEdicaoId != empresa.UsuarioCriacaoId);
 
         }
 
@@ -83,13 +77,12 @@ namespace Demandas.Domain.Test
         [Fact(DisplayName = "Atualizando Empresa Com Dados Invalidos")]
         public void AtualizarEmpresa_ComDadosInvalidos_RetornarDomainValidationException()
         {
-            var dto = new EmpresaDto("Empresa Teste", "logopath", 1);
-            var empresa = new Empresa(dto);
+            var empresa = new Empresa("Empresa Teste", "logopath", 1);
 
-            dto.Nome = "Em";
-            dto.UsuarioUltimaEdicaoId = 0;
+            string nome = "Em";
+            int usuarioUltimaEdicaoId = 0;
            
-            Assert.Throws<DomainValidationException>(() => empresa.AtualizarEntidade(dto));
+            Assert.Throws<DomainValidationException>(() => empresa.AtualizarEntidade(nome, "", usuarioUltimaEdicaoId));
 
         }
     }

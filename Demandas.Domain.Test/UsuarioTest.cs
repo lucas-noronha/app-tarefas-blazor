@@ -1,5 +1,4 @@
-﻿using Demandas.Domain.DTOs;
-using Demandas.Domain.Entities;
+﻿using Demandas.Domain.Entities;
 using Demandas.Domain.Exceptions;
 using FluentAssertions;
 using System;
@@ -20,9 +19,8 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new UsuarioDto("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
 
-                var empresa = new Usuario(dto);
+                var usuario = new Usuario("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
             };
 
             action
@@ -37,9 +35,7 @@ namespace Demandas.Domain.Test
 
             Action action = () =>
             {
-                var dto = new UsuarioDto("","","","",false,false,0,0);
-
-                var empresa = new Usuario(dto);
+                var usuario = new Usuario("", "", "", "", false, false, 0, 0);
             };
 
             action
@@ -52,28 +48,27 @@ namespace Demandas.Domain.Test
         public void AtualizarUsuario_ComDadosValidos_RetornaUsuarioCriado()
         {
 
-            var dto = new UsuarioDto("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
-            var empresa = new Usuario(dto);
+            var usuario = new Usuario("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
 
-            dto.Nome = "Usuario 2";
-            dto.Login = "login2";
-            dto.Senha = "senha321";
-            dto.Email = "email1@email1";
-            dto.Desenvolvedor = true;
-            dto.Administrador = true;
-            dto.UsuarioUltimaEdicaoId = 2;
-            dto.EmpresaId = 1;
+            string nome = "Usuario 2";
+            string login = "login2";
+            string senha = "senha321";
+            string email = "email1@email1";
+            bool desenvolvedor = true;
+            bool administrador = true;
+            int usuarioUltimaEdicaoId = 2;
+            int empresaId = 1;
 
-            empresa.AtualizarEntidade(dto);
+            usuario.AtualizarEntidade(nome,login,senha,email,desenvolvedor,administrador,usuarioUltimaEdicaoId,empresaId);
 
-            Assert.True(dto.Nome == "Usuario 2");
-            Assert.True(dto.Login == "login2");
-            Assert.True(dto.Senha == "senha321");
-            Assert.True(dto.Email == "email1@email1");
-            Assert.True(dto.Desenvolvedor == true);
-            Assert.True(dto.Administrador == true);
-            Assert.True(dto.UsuarioUltimaEdicaoId == 2);
-            Assert.True(dto.EmpresaId == 1);
+            Assert.True(usuario.Nome == "Usuario 2");
+            Assert.True(usuario.Login == "login2");
+            Assert.True(usuario.Senha == "senha321");
+            Assert.True(usuario.Email == "email1@email1");
+            Assert.True(usuario.Desenvolvedor == true);
+            Assert.True(usuario.Administrador == true);
+            Assert.True(usuario.UsuarioUltimaEdicaoId == 2);
+            Assert.True(usuario.EmpresaId == 1);
 
 
         }
@@ -81,20 +76,18 @@ namespace Demandas.Domain.Test
         [Fact(DisplayName = "Atualizar Usuários Com Parâmetros Inválidos")]
         public void AtualizarUsuario_ComDadosInvalidos_RetornaDomainValidationException()
         {
+            var usuario = new Usuario("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
 
-            var dto = new UsuarioDto("Usuario Um", "login1", "senha123", "email@email", false, true, 1, 1);
-            var empresa = new Usuario(dto);
+            string nome = "";
+            string login = "";
+            string senha = "";
+            string email = "";
+            bool desenvolvedor = true;
+            bool administrador = true;
+            int usuarioUltimaEdicaoId = 0;
+            int empresaId = 0;
 
-            dto.Nome = "";
-            dto.Login = "";
-            dto.Senha = "";
-            dto.Email = "";
-            dto.Desenvolvedor = true;
-            dto.Administrador = true;
-            dto.UsuarioUltimaEdicaoId = 0;
-            dto.EmpresaId = 0;
-
-            Assert.Throws<DomainValidationException>(() => empresa.AtualizarEntidade(dto));
+            Assert.Throws<DomainValidationException>(() => usuario.AtualizarEntidade(nome, login,senha,email,desenvolvedor,administrador,usuarioUltimaEdicaoId,empresaId));
 
         }
     }

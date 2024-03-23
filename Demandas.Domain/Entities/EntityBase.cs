@@ -15,6 +15,7 @@ namespace Demandas.Domain.Entities
             DataCriacao = DateTime.Now;
             DataUltimaEdicao = DateTime.Now;
             UsuarioCriacaoId = usuarioCriacao;
+            EmpresaId = empresaId;
         }
         public int Id { get; }
 
