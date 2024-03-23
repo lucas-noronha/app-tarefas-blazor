@@ -39,7 +39,16 @@ namespace Demandas.Application.Services
             return _mapper.Map<EmpresaDto>(retorno);
         }
 
-        public async Task<ICollection<EmpresaDto>> BuscarListaAsync(Expression<Func<EmpresaDto, bool>> expression)
+        public async Task<ICollection<EmpresaDto>> BuscarListaAsync()
+        {
+            var entities = await _empresaRepository.ListarQueryAsync(x => true);
+
+            List<EmpresaDto> dtos = entities.Select(x => _mapper.Map<EmpresaDto>(x)).ToList();
+
+            return dtos;
+        }
+
+        public async Task<ICollection<EmpresaDto>> BuscarListaComQueryAsync(Expression<Func<EmpresaDto, bool>> expression)
         {
             var expressionEntity = _mapper.Map<Expression<Func<Empresa, bool>>>(expression);
 

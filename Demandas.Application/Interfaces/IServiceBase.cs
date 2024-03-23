@@ -10,7 +10,9 @@ namespace Demandas.Application.Interfaces
     public interface IServiceBase<T> where T : class
     {
 
-        Task<ICollection<T>> BuscarListaAsync(Expression<Func<T, bool>> expression);
+        Task<ICollection<T>> BuscarListaComQueryAsync(Expression<Func<T, bool>> expression);
+
+        Task<ICollection<T>> BuscarListaAsync();
         Task<T> BuscarPorIdAsync(int id);
 
         Task<T> Adicionar(T dto);

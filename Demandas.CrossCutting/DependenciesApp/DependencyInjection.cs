@@ -1,4 +1,7 @@
-﻿using Demandas.Application.Interfaces;
+﻿using AutoMapper;
+using AutoMapper.Execution;
+using AutoMapper.Extensions.ExpressionMapping;
+using Demandas.Application.Interfaces;
 using Demandas.Application.Mappings;
 using Demandas.Application.Services;
 using Demandas.Domain.Interfaces;
@@ -35,7 +38,15 @@ namespace Demandas.CrossCutting.DependenciesApp
             services.AddScoped<IEmpresaService, EmpresaService>();
             services.AddScoped<IDemandaService, DemandaService>();
 
-            services.AddAutoMapper(typeof(DomainToDTOMap));
+
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddExpressionMapping();
+
+            },typeof(DomainToDTOMap));
+
+
+
 
             return services;
         }

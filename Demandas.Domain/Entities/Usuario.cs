@@ -9,9 +9,9 @@ namespace Demandas.Domain.Entities
 {
     public sealed class Usuario : EntityBase
     {
-        public Usuario(string nome, string login, string senha, string email, bool dev, bool adm, int usuarioUltimaEdicaoId, int empresaId) : base(usuarioUltimaEdicaoId,empresaId)
+        public Usuario(string nome, string login, string senha, string email, bool desenvolvedor, bool administrador, int usuarioUltimaEdicaoId, int empresaId) : base(usuarioUltimaEdicaoId,empresaId)
         {
-            AtualizarEntidade(nome, login,senha,email,dev,adm,usuarioUltimaEdicaoId,empresaId);
+            AtualizarEntidade(nome, login,senha,email,desenvolvedor,administrador,usuarioUltimaEdicaoId,empresaId);
         }
 
         public string Nome { get; private set; }

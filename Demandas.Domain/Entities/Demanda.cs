@@ -12,10 +12,12 @@ namespace Demandas.Domain.Entities
 {
     public sealed class Demanda : EntityBase
     {
+        private Demanda()
+        {}
         public Demanda(
             string titulo, 
             string descricao, 
-            EnumStatusDemanda statusDemanda, 
+            EnumStatusDemanda status, 
             EnumTipoDemanda tipoDemanda, 
             int clienteId,
             bool? urgente,
@@ -25,7 +27,7 @@ namespace Demandas.Domain.Entities
             : base(usuarioUltimaEdicaoId, empresaId)
         {
             UsuarioResponsavelId = usuarioUltimaEdicaoId;
-            AtualizarEntidade(titulo,descricao,null,statusDemanda,tipoDemanda,urgente,importante,usuarioUltimaEdicaoId,usuarioUltimaEdicaoId,clienteId,empresaId);
+            AtualizarEntidade(titulo,descricao,null,status,tipoDemanda,urgente,importante,usuarioUltimaEdicaoId,usuarioUltimaEdicaoId,clienteId,empresaId);
         }
 
         public string Titulo { get; private set;}

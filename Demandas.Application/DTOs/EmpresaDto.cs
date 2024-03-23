@@ -14,8 +14,6 @@ namespace Demandas.Application.DTOs
 
         public string Logo { get; set; }
 
-        public DateTime DataUltimaEdicao { get;  set; }
-
         public int UsuarioUltimaEdicaoId { get;  set; }
     }
 }

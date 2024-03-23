@@ -37,7 +37,15 @@ namespace Demandas.Application.Services
             return _mapper.Map<T>(retorno);
         }
 
-        public async Task<ICollection<T>> BuscarListaAsync(Expression<Func<T, bool>> expression)
+        public async Task<ICollection<T>> BuscarListaAsync()
+        {
+            var entities = await _repositoryBase.ListarQueryAsync(x => true);
+
+            List<T> dtos = entities.Select(x => _mapper.Map<T>(x)).ToList();
+            return dtos;
+        }
+
+        public async Task<ICollection<T>> BuscarListaComQueryAsync(Expression<Func<T, bool>> expression)
         {
             var expressionEntity = _mapper.Map<Expression<Func<D, bool>>>(expression);
 

@@ -5,13 +5,13 @@ namespace Demandas.Domain.Entities
 {
     public sealed class Empresa
     {
-        public Empresa(string nome, string logo, int usuarioCriacao)
+        private Empresa() { }
+        public Empresa(string nome, string logo, int usuarioCriacaoId)
         {
 
             DataCriacao = DateTime.UtcNow;
-            UsuarioCriacaoId = usuarioCriacao;
-
-            AtualizarEntidade(nome, logo,usuarioCriacao);
+            UsuarioCriacaoId = usuarioCriacaoId;
+            AtualizarEntidade(nome, logo, usuarioCriacaoId);
         }
 
         public int Id { get; set; }
@@ -51,7 +51,7 @@ namespace Demandas.Domain.Entities
 
             
             if (string.IsNullOrWhiteSpace(nome) || nome.Length < 3) erros.Add(new DomainValidationException("O nome da empresa precisa ser válido."));
-            if (dataUltimaEdicao.Date < DateTime.UtcNow.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
+            //if (dataUltimaEdicao.Date < DateTime.UtcNow.Date) erros.Add(new DomainValidationException("A data da ultima edição é menor que a data atual."));
             if (usuarioUltimaEdicaoId <= 0) erros.Add(new DomainValidationException("O ID do usuário da ultima edição é inválido."));
 
             if (erros.Any()) throw new DomainValidationException("Houveram erros ao validar informações da Empresa", erros);

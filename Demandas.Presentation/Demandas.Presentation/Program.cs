@@ -5,6 +5,14 @@ using Demandas.CrossCutting.DependenciesApp;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder => builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+
+});
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
@@ -12,6 +20,7 @@ builder.Services.AddFluentUIComponents();
 
 //Add custom services
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddControllers();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +36,13 @@ else
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+app.UseCors("CorsPolicy");
+app.UseAuthorization();
+app.UseAntiforgery();
+app.UseEndpoints(end => end.MapControllers());
 
 app.UseStaticFiles();
 app.UseAntiforgery();

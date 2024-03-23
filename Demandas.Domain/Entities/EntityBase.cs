@@ -9,6 +9,7 @@ namespace Demandas.Domain.Entities
 {
     public abstract class EntityBase
     {
+        protected EntityBase() { }
         protected EntityBase(int usuarioCriacao, int empresaId)
         {
             DataCriacao = DateTime.Now;

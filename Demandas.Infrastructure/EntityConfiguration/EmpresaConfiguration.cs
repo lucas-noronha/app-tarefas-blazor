@@ -52,14 +52,15 @@ namespace Demandas.Infrastructure.EntityConfiguration
 
 
             builder
-                .HasMany(x => x.Clientes)
-                .WithOne(x => x.Empresa);
+                .HasOne(r => r.UsuarioCriacao)
+                .WithMany();
 
             builder
-                .Ignore(x => x.UsuarioCriacao);
+                .HasOne(x => x.UsuarioUltimaEdicao)
+                .WithMany();
 
-            builder
-                .Ignore(x => x.UsuarioUltimaEdicao);
+            
+
         }
     }
 }

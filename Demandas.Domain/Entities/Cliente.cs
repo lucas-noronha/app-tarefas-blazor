@@ -12,7 +12,8 @@ namespace Demandas.Domain.Entities
 {
     public sealed class Cliente : EntityBase
     {
-        
+        private Cliente()
+        {}
         public Cliente(string nome, string contato, int empresaId, int usuarioUltimaEdicaoId) : base(usuarioUltimaEdicaoId, empresaId)
         {
             AtualizarEntidade(nome, contato, empresaId, usuarioUltimaEdicaoId);

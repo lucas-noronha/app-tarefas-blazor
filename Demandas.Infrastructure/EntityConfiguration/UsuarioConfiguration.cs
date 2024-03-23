@@ -47,6 +47,7 @@ namespace Demandas.Infrastructure.EntityConfiguration
                 .Property(x => x.Desenvolvedor)
                 .HasColumnOrder(3)
                 .HasColumnName("st_dev");
+
         }
     }
 }
