@@ -23,12 +23,6 @@ namespace Demandas.Application.Mappings
             CreateMap<Demanda, DemandaDto>().ReverseMap().ConstructUsing(x => new Demanda(x.Titulo, x.Descricao,x.Status, x.TipoDemanda, x.ClienteId, x.Urgente, x.Importante, x.UsuarioUltimaEdicaoId, x.EmpresaId));
             CreateMap<Empresa, EmpresaDto>().ReverseMap().ConstructUsing(x => new Empresa(x.Nome, x.Logo, x.UsuarioUltimaEdicaoId));
 
-            CreateMap<Expression<Func<Empresa, bool>>, Expression<Func<EmpresaDto, bool>>>();
-            CreateMap<Expression<Func<Usuario, bool>>, Expression<Func<UsuarioDto, bool>>>();
-            CreateMap<Expression<Func<Cliente, bool>>, Expression<Func<ClienteDto, bool>>>();
-            CreateMap<Expression<Func<Demanda, bool>>, Expression<Func<DemandaDto, bool>>>();
-
-            
         }
 
     }
