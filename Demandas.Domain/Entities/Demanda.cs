@@ -86,7 +86,7 @@ namespace Demandas.Domain.Entities
             if (string.IsNullOrWhiteSpace(titulo)) erros.Add(new DomainValidationException("O título da demanda é obrigatório."));
             else if (titulo.Length < 10) erros.Add(new DomainValidationException("O título precisa ter pelo menos 10 caracteres."));
             if (string.IsNullOrWhiteSpace(descricao)) erros.Add(new DomainValidationException("A descrição precisa ser informada."));
-            else if (descricao.Length < 5) erros.Add(new DomainValidationException("A descrição precisa ter pelo menos 10 caracteres."));
+            else if (descricao.Length < 10) erros.Add(new DomainValidationException("A descrição precisa ter pelo menos 10 caracteres."));
             if (dataFinalizacao != null && dataFinalizacao > DateTime.UtcNow) erros.Add(new DomainValidationException("A data de finalização não pode ser maior que a data atual."));
             if (clienteId <= 0) erros.Add(new DomainValidationException("O ID do Cliente informado é inválido."));
             

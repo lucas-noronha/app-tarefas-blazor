@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using AutoMapper.Execution;
-using AutoMapper.Extensions.ExpressionMapping;
+﻿using AutoMapper.Extensions.ExpressionMapping;
 using Demandas.Application.Interfaces;
 using Demandas.Application.Mappings;
 using Demandas.Application.Services;
@@ -10,13 +8,8 @@ using Demandas.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
+using MediatR.Registration;
+using Demandas.Application.CQRS.Usuario.Commands;
 namespace Demandas.CrossCutting.DependenciesApp
 {
     public static class DependencyInjection
@@ -26,7 +19,7 @@ namespace Demandas.CrossCutting.DependenciesApp
             var conStr = configuration.GetConnectionString("demandasdb");
             
             services.AddDbContext<DemandasDb>(opt => opt.UseNpgsql(conStr));
-
+            services.AddMediatR(opt => opt.RegisterServicesFromAssemblies(typeof(CreateUsuarioCommand).Assembly));
 
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();

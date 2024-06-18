@@ -15,9 +15,4 @@
     <PackageReference Include="MediatR" Version="12.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CQRS\Demanda\Commands\Handlers\" />
-    <Folder Include="CQRS\Demanda\Queries\Handlers\" />
-  </ItemGroup>
-
 </Project>

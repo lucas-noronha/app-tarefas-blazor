@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Empresa.Queries
 {
-    internal class GetEmpresaByIdQuery : IRequest<EmpresaDto>
+    public class GetEmpresaByIdQuery : IRequest<EmpresaDto>
     {
         public GetEmpresaByIdQuery(int id)        
         {

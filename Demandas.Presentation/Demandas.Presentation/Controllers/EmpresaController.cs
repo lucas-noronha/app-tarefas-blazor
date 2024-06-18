@@ -1,6 +1,7 @@
-﻿using Demandas.Application.DTOs;
-using Demandas.Application.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using Demandas.Application.CQRS.Empresa.Commands;
+using Demandas.Application.CQRS.Empresa.Queries;
+using Demandas.Application.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demandas.Presentation.Controllers
@@ -9,33 +10,25 @@ namespace Demandas.Presentation.Controllers
     [ApiController]
     public class EmpresaController : ControllerBase
     {
-        private readonly IEmpresaService empresaService;
+        private readonly IMediator mediator;
 
-        public EmpresaController(IEmpresaService empresaService)
+        public EmpresaController(IMediator mediator)
         {
-            this.empresaService = empresaService;
+            this.mediator = mediator;
         }
 
         [HttpGet]
         public async Task<IActionResult> BuscarEmpresas()
         {
-            var lista = await empresaService.BuscarListaAsync();
-            return Ok(lista);
-        }
-
-        [HttpGet("teste")]
-        public async Task<IActionResult> BuscarEmpresasFiltro()
-        {
-            var lista = await empresaService.BuscarListaComQueryAsync(x => x.Id == 1);
-            return Ok(lista);
+            List<EmpresaDto> list = await mediator.Send(new GetAllEmpresasQuery());
+            return Ok(list);
         }
 
         [HttpPost]
         public async Task<IActionResult> CadastrarEmpresa([FromBody] EmpresaDto dto)
         {
-            var empresa = await empresaService.Adicionar(dto);
-
-            return Ok(empresa);
+            int entityId = await mediator.Send(CreateEmpresaCommand.CriarPorDto(dto));
+            return Ok(entityId);
         }
     }
 }

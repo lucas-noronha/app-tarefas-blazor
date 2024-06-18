@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Usuario.Commands
 {
-    internal class UpdateUsuarioCommand : IRequest<UsuarioDto>
+    public class UpdateUsuarioCommand : IRequest<UsuarioDto>
     {
         public UsuarioDto UsuarioInfos { get; set; }
         public UpdateUsuarioCommand(UsuarioDto infos)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Empresa.Queries
 {
-    internal class GetAllEmpresasQuery : IRequest<List<EmpresaDto>>
+    public class GetAllEmpresasQuery : IRequest<List<EmpresaDto>>
     {
     }
 }

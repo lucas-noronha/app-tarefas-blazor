@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Demandas.Application.DTOs;
+using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,14 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Demanda.Commands
 {
-    internal class UpdateDemandaCommand
+    public class UpdateDemandaCommand : IRequest<DemandaDto>
     {
+        public UpdateDemandaCommand(DemandaDto demandaInfo)
+        {
+            DemandaInfo = demandaInfo;
+        }
+        public DemandaDto DemandaInfo { get; }
+
+        public static UpdateDemandaCommand CriarPorId(DemandaDto dto) => new UpdateDemandaCommand(dto);
     }
 }

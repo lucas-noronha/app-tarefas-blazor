@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Usuario.Queries
 {
-    internal class GetAllUsuariosQuery : IRequest<List<UsuarioDto>>
+    public class GetAllUsuariosQuery : IRequest<List<UsuarioDto>>
     {
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Empresa.Commands
 {
-    internal class UpdateEmpresaCommand : IRequest<EmpresaDto>
+    public class UpdateEmpresaCommand : IRequest<EmpresaDto>
     {
         public EmpresaDto EmpresaInfo { get; set; }
 

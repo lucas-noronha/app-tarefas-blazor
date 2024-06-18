@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Cliente.Commands
 {
-    internal class UpdateClienteCommand : IRequest<ClienteDto>
+    public class UpdateClienteCommand : IRequest<ClienteDto>
     {
         public ClienteDto ClienteInfos { get; set; }
         public UpdateClienteCommand(ClienteDto clienteInfos)

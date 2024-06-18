@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Empresa.Commands
 {
-    internal class DeleteEmpresaCommand : IRequest
+    public class DeleteEmpresaCommand : IRequest
     {
         public DeleteEmpresaCommand(int id)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Usuario.Commands
 {
-    internal class DeleteUsuarioCommand : IRequest
+    public class DeleteUsuarioCommand : IRequest
     {
         public DeleteUsuarioCommand(int id)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Usuario.Queries
 {
-    internal class GetUsuarioByIdQuery : IRequest<UsuarioDto>
+    public class GetUsuarioByIdQuery : IRequest<UsuarioDto>
     {
         public GetUsuarioByIdQuery(int id)
         {

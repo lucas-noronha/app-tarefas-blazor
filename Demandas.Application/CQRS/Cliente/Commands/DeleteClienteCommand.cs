@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Demandas.Application.CQRS.Cliente.Commands
 {
-    internal class DeleteClienteCommand : IRequest
+    public class DeleteClienteCommand : IRequest
     {
         public int Id { get; set; }
         public DeleteClienteCommand(int id) 
