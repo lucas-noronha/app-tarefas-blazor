@@ -12,6 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CQRS\Demanda\Commands\" />
+    <Folder Include="CQRS\Demanda\Queries\" />
   </ItemGroup>
 
 </Project>
