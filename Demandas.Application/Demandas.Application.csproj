@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Demanda\Commands\" />
-    <Folder Include="CQRS\Demanda\Queries\" />
+    <Folder Include="CQRS\Demanda\Commands\Handlers\" />
+    <Folder Include="CQRS\Demanda\Queries\Handlers\" />
   </ItemGroup>
 
 </Project>
