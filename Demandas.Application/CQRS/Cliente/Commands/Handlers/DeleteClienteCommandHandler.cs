@@ -1,4 +1,5 @@
-﻿using Demandas.Application.Services;
+﻿using Demandas.Application.Interfaces;
+using Demandas.Application.Services;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Demandas.Application.CQRS.Cliente.Commands.Handlers
 {
     internal class DeleteClienteCommandHandler : IRequestHandler<DeleteClienteCommand>
     {
-        private readonly ClienteService service;
+        private readonly IClienteService service;
 
-        public DeleteClienteCommandHandler(ClienteService service)
+        public DeleteClienteCommandHandler(IClienteService service)
         {
             this.service = service;
         }

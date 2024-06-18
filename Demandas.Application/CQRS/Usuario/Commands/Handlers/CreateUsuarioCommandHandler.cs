@@ -1,4 +1,5 @@
-﻿using Demandas.Application.Services;
+﻿using Demandas.Application.Interfaces;
+using Demandas.Application.Services;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Demandas.Application.CQRS.Usuario.Commands.Handlers
 {
     internal class CreateUsuarioCommandHandler : IRequestHandler<CreateUsuarioCommand, int>
     {
-        private readonly UsuarioService service;
+        private readonly IUsuarioService service;
 
-        public CreateUsuarioCommandHandler(UsuarioService service)
+        public CreateUsuarioCommandHandler(IUsuarioService service)
         {
             this.service = service;
         }

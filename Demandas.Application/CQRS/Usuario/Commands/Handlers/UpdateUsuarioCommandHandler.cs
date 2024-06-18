@@ -1,4 +1,5 @@
 ﻿using Demandas.Application.DTOs;
+using Demandas.Application.Interfaces;
 using Demandas.Application.Services;
 using MediatR;
 using System;
@@ -11,9 +12,9 @@ namespace Demandas.Application.CQRS.Usuario.Commands.Handlers
 {
     internal class UpdateUsuarioCommandHandler : IRequestHandler<UpdateUsuarioCommand, UsuarioDto>
     {
-        private readonly UsuarioService service;
+        private readonly IUsuarioService service;
 
-        public UpdateUsuarioCommandHandler(UsuarioService service)
+        public UpdateUsuarioCommandHandler(IUsuarioService service)
         {
             this.service = service;
         }

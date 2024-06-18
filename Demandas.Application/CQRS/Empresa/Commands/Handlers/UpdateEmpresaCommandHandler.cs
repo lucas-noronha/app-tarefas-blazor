@@ -1,4 +1,5 @@
 ﻿using Demandas.Application.DTOs;
+using Demandas.Application.Interfaces;
 using Demandas.Application.Services;
 using MediatR;
 using System;
@@ -11,9 +12,9 @@ namespace Demandas.Application.CQRS.Empresa.Commands.Handlers
 {
     internal class UpdateEmpresaCommandHandler : IRequestHandler<UpdateEmpresaCommand, EmpresaDto>
     {
-        private readonly EmpresaService service;
+        private readonly IEmpresaService service;
 
-        public UpdateEmpresaCommandHandler(EmpresaService service)
+        public UpdateEmpresaCommandHandler(IEmpresaService service)
         {
             this.service = service;
         }

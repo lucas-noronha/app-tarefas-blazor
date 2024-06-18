@@ -1,4 +1,5 @@
 ﻿using Demandas.Application.DTOs;
+using Demandas.Application.Interfaces;
 using Demandas.Application.Services;
 using MediatR;
 using System;
@@ -11,9 +12,9 @@ namespace Demandas.Application.CQRS.Demanda.Queries.Handlers
 {
     internal class GetAllDemandasQueryHandler : IRequestHandler<GetAllDemandasQuery, List<DemandaDto>>
     {
-        private readonly DemandaService service;
+        private readonly IDemandaService service;
 
-        public GetAllDemandasQueryHandler(DemandaService service)
+        public GetAllDemandasQueryHandler(IDemandaService service)
         {
             this.service = service;
         }

@@ -1,4 +1,5 @@
-﻿using Demandas.Application.Services;
+﻿using Demandas.Application.Interfaces;
+using Demandas.Application.Services;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Demandas.Application.CQRS.Demanda.Commands.Handlers
 {
     public class CreateDemandaCommandHandler : IRequestHandler<CreateDemandaCommand, int>
     {
-        private readonly DemandaService service;
+        private readonly IDemandaService service;
 
-        public CreateDemandaCommandHandler(DemandaService service) 
+        public CreateDemandaCommandHandler(IDemandaService service) 
         {
             this.service = service;
         }

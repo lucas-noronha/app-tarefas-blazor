@@ -11,9 +11,9 @@ namespace Demandas.Application.CQRS.Cliente.Commands.Handlers
 {
     internal class UpdateClienteCommandHandler : IRequestHandler<UpdateClienteCommand, ClienteDto>
     {
-        private readonly ClienteService service;
+        private readonly IClienteService service;
 
-        public UpdateClienteCommandHandler(ClienteService service)
+        public UpdateClienteCommandHandler(IClienteService service)
         {
             this.service = service;
         }
