@@ -1,19 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Demandas.Application.DTOs
 {
-    public class EmpresaDto 
+    /// <summary>
+    /// Representa uma empresa no sistema.
+    /// </summary>
+    public class EmpresaDto
     {
-
+        /// <summary>
+        /// Identificador único da empresa.
+        /// </summary>
         public int Id { get; set; }
+
+        /// <summary>
+        /// Nome da empresa.
+        /// </summary>
         public string Nome { get; set; }
 
+        /// <summary>
+        /// Caminho do arquivo de logo da empresa.
+        /// </summary>
         public string Logo { get; set; }
 
-        public int UsuarioUltimaEdicaoId { get;  set; }
+        /// <summary>
+        /// Identificador do usuário que realizou a última edição nos dados da empresa.
+        /// </summary>
+        public int UsuarioUltimaEdicaoId { get; set; }
     }
 }

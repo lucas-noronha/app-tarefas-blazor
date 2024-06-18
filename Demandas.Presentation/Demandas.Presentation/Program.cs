@@ -2,7 +2,8 @@ using Demandas.Presentation.Client.Pages;
 using Demandas.Presentation.Components;
 using Microsoft.FluentUI.AspNetCore.Components;
 using Demandas.CrossCutting.DependenciesApp;
-using Swashbuckle.AspNetCore.Swagger; // Certifique-se de que esta diretiva esteja presente se necessário
+using Swashbuckle.AspNetCore.Swagger;
+using System.Reflection; // Certifique-se de que esta diretiva esteja presente se necessário
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -31,6 +32,15 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Demandas.Presentation", Version = "v1" });
     c.EnableAnnotations();
+
+    //var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    //var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    //c.IncludeXmlComments(xmlPath);
+
+    // Adiciona o arquivo XML de documentação do projeto Demandas.Application
+    var xmlDTOFile = "Demandas.Application.xml"; // O nome do arquivo XML gerado
+    var xmlDTOPath = Path.Combine(AppContext.BaseDirectory, xmlDTOFile);
+    c.IncludeXmlComments(xmlDTOPath);
 });
 
 
