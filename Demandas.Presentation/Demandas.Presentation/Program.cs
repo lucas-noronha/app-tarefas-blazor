@@ -23,11 +23,14 @@ builder.Services.AddFluentUIComponents();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 
+builder.Services.AddRouting(builder => builder.LowercaseUrls = true);
+
 
 //Add swagger documentation config
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new() { Title = "Demandas.Presentation", Version = "v1" });
+    c.EnableAnnotations();
 });
 
 
