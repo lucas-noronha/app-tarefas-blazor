@@ -19,6 +19,12 @@ namespace Demandas.Infrastructure.Repositories
         {
             db = dbContext;
         }
+
+        public async Task<Usuario> BuscarPorLogin(string login)
+        {
+            return await db.Usuarios.SingleOrDefaultAsync(x => x.Login == login);
+        }
+
         public async Task<Usuario> BuscarPorIdAsync(int id)
         {
             return await db.Usuarios.SingleOrDefaultAsync(x => x.Id == id);

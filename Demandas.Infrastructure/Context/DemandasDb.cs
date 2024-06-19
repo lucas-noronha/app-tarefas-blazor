@@ -11,7 +11,9 @@ namespace Demandas.Infrastructure.Context
     public class DemandasDb : DbContext
     {
         public DemandasDb(DbContextOptions options) : base(options)
-        {}
+        {
+            
+        }
 
         protected override void OnModelCreating(ModelBuilder model)
         {

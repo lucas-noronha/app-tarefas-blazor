@@ -57,5 +57,10 @@ namespace Demandas.Domain.Entities
 
             if (erros.Any()) throw new DomainValidationException("Houveram erros na validação do Usuário", erros);
         }
+
+        public void AtualizarSenha(string senha)
+        {
+            this.Senha = senha;
+        }
     }
 }

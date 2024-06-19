@@ -9,5 +9,6 @@ namespace Demandas.Domain.Interfaces
 {
     public interface IUsuarioRepository : IRepositoryBase<Usuario>
     {
+        public Task<Usuario> BuscarPorLogin(string login);
     }
 }

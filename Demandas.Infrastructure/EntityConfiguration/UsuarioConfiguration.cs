@@ -30,7 +30,7 @@ namespace Demandas.Infrastructure.EntityConfiguration
                 .Property(x => x.Senha)
                 .HasColumnOrder(3)
                 .HasColumnName("ds_senha")
-                .HasMaxLength(18);
+                .HasMaxLength(128);
 
             builder
                 .Property(x => x.Email)
