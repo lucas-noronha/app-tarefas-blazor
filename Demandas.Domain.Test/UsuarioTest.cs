@@ -90,5 +90,21 @@ namespace Demandas.Domain.Test
             Assert.Throws<DomainValidationException>(() => usuario.AtualizarEntidade(nome, login,senha,email,desenvolvedor,administrador,usuarioUltimaEdicaoId,empresaId));
 
         }
+
+        [Trait("Usuário", "Teste de Validação da Atualização de Senha")]
+        [Fact(DisplayName = "Atualizando Senha do Usuário Com Valor Válido")]
+        public void AtualizarSenha_ValorValido_RetornaSenhaAtualizada()
+        {
+            // Arrange
+            var usuario = new Usuario("Usuario Teste", "loginTeste", "senha123", "email@teste.com", false, true, 1, 1);
+            string novaSenha = "novaSenha123";
+
+            // Act
+            usuario.AtualizarSenha(novaSenha);
+
+            // Assert
+            Assert.Equal(novaSenha, usuario.Senha);
+        }
+
     }
 }
