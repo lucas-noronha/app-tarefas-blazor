@@ -16,6 +16,6 @@ namespace Demandas.Application.CQRS.Demanda.Commands
         }
         public DemandaDto DemandaInfo { get; }
 
-        public static UpdateDemandaCommand CriarPorId(DemandaDto dto) => new UpdateDemandaCommand(dto);
+        public static UpdateDemandaCommand CriarPorDto(DemandaDto dto) => new UpdateDemandaCommand(dto);
     }
 }
