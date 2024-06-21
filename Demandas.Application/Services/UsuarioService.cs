@@ -25,7 +25,7 @@ namespace Demandas.Application.Services
 
 
         public async Task<UsuarioDto> BuscaPorLogin(string login) { 
-            return this.mapper.Map<UsuarioDto>(await usuarioRepository.BuscarPorLogin(login));
+            return this.mapper.Map<UsuarioDto>(await usuarioRepository.BuscarPorLoginAsync(login));
         }
 
         public async Task<UsuarioDto> Adicionar(UsuarioDto dto)
@@ -46,15 +46,15 @@ namespace Demandas.Application.Services
             var senhaAtual = usuarioExistente.Senha;
 
             // Atualiza o usuário com os novos dados, exceto a senha
-            var usuarioAtualizado = mapper.Map(dto, usuarioExistente);
+            usuarioExistente.AtualizarEntidade(dto.Nome, dto.Login, dto.Email, senhaAtual, dto.Desenvolvedor, dto.Administrador, dto.UsuarioUltimaEdicaoId, dto.EmpresaId);
 
             // Restaura a senha original
-            usuarioAtualizado.AtualizarSenha(senhaAtual);
+            
 
             // Salva as alterações no banco de dados
-            await usuarioRepository.AtualizarAsync(usuarioAtualizado);
+            await usuarioRepository.AtualizarAsync(usuarioExistente);
 
-            return mapper.Map<UsuarioDto>(usuarioAtualizado);
+            return mapper.Map<UsuarioDto>(usuarioExistente);
         }
 
 
@@ -98,7 +98,7 @@ namespace Demandas.Application.Services
         public async Task<bool> ValidarSenha(string login, string senhaFornecida)
         {
             // Buscar o usuário pelo login
-            var usuario = await usuarioRepository.BuscarPorLogin(login);
+            var usuario = await usuarioRepository.BuscarPorLoginAsync(login);
 
             if (usuario == null)
             {

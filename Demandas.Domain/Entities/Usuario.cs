@@ -33,7 +33,7 @@ namespace Demandas.Domain.Entities
 
             Nome = nome;
             Login = login;
-            Senha= senha;
+            AtualizarSenha(senha);
             Email= email;
             Administrador= adm;
             Desenvolvedor = dev;
