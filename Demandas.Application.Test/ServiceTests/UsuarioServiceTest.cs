@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demandas.Application.Test
+namespace Demandas.Application.Test.ServiceTests
 {
     public class UsuarioServiceTest
     {
@@ -60,7 +60,7 @@ namespace Demandas.Application.Test
             // Act
             var result = await _usuarioService.Adicionar(usuarioDto);
             usuario.AtualizarSenha(usuarioDto.Senha); //Simula a atualização da senha hashed que é mais complicado de fazer pelo mock
-            var validacao = await _usuarioService.ValidarSenha(usuario.Login,senhaAtual);
+            var validacao = await _usuarioService.ValidarSenha(usuario.Login, senhaAtual);
 
             // Assert
             Assert.NotNull(result);
@@ -87,7 +87,7 @@ namespace Demandas.Application.Test
             DefinirIdUsuario(usuario, 1);
             _mockUsuarioRepository.Setup(repo => repo.BuscarPorIdAsync(usuarioDto.Id)).ReturnsAsync(usuario);
             _mockUsuarioRepository.Setup(repo => repo.AtualizarAsync(It.IsAny<Usuario>())).ReturnsAsync(usuario);
-            _mockMapper.Setup(mapper => mapper.Map<UsuarioDto, Usuario>(It.IsAny<UsuarioDto>(), It.IsAny<Usuario>())).Returns(usuario);
+            _mockMapper.Setup(mapper => mapper.Map(It.IsAny<UsuarioDto>(), It.IsAny<Usuario>())).Returns(usuario);
             _mockMapper.Setup(mapper => mapper.Map<UsuarioDto>(It.IsAny<Usuario>()))
                     .Returns<Usuario>(usuario => new UsuarioDto
                     {
@@ -107,7 +107,7 @@ namespace Demandas.Application.Test
             // Assert
             Assert.NotNull(result);
             _mockUsuarioRepository.Verify(repo => repo.AtualizarAsync(It.IsAny<Usuario>()), Times.Once);
-        
+
         }
 
         [Fact]

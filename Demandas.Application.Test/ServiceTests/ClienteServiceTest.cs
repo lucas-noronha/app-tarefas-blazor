@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Demandas.Application.Test
+namespace Demandas.Application.Test.ServiceTests
 {
     public class ClienteServiceTest
     {
@@ -36,7 +36,7 @@ namespace Demandas.Application.Test
         };
             var clientesDto = clientes.Select(c => new ClienteDto { Nome = c.Nome, Contato = c.Contato }).ToList();
 
-            _mockClienteRepository.Setup(repo => repo.ListarQueryAsync(It.IsAny<System.Linq.Expressions.Expression<System.Func<Cliente, bool>>>())).ReturnsAsync(clientes);
+            _mockClienteRepository.Setup(repo => repo.ListarQueryAsync(It.IsAny<System.Linq.Expressions.Expression<Func<Cliente, bool>>>())).ReturnsAsync(clientes);
             _mockMapper.Setup(mapper => mapper.Map<IEnumerable<ClienteDto>>(It.IsAny<IEnumerable<Cliente>>())).Returns(clientesDto);
 
 
