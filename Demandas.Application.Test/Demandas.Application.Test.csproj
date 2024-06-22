@@ -27,8 +27,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="CQRSTests\Demanda\Commands\" />
-		<Folder Include="CQRSTests\Demanda\Queries\" />
 		<Folder Include="CQRSTests\Empresa\Commands\" />
 		<Folder Include="CQRSTests\Empresa\Queries\" />
 		<Folder Include="CQRSTests\Usuario\Commands\" />
