@@ -20,12 +20,12 @@ namespace Demandas.Infrastructure.Context
             base.OnModelCreating(model);
             model.ApplyConfigurationsFromAssembly(typeof(DemandasDb).Assembly);
         }
-        public DbSet<Demanda> Demandas { get; set; }
+        public virtual DbSet<Demanda> Demandas { get; set; }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        public virtual DbSet<Cliente> Clientes { get; set; }
 
-        public DbSet<Empresa> Empresas { get; set; }
+        public virtual DbSet<Empresa> Empresas { get; set; }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Usuario> Usuarios { get; set; }
     }
 }
