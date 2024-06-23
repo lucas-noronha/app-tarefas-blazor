@@ -26,11 +26,4 @@
 		<Using Include="Xunit" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="CQRSTests\Empresa\Commands\" />
-		<Folder Include="CQRSTests\Empresa\Queries\" />
-		<Folder Include="CQRSTests\Usuario\Commands\" />
-		<Folder Include="CQRSTests\Usuario\Queries\" />
-	</ItemGroup>
-
 </Project>
